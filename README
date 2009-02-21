@@ -12,7 +12,7 @@ type known as greeking.
 Feature overview
 ================
 
-Currently, three components are bundled into ``greeking``:
+Currently, four components are bundled into ``greeking``:
 
 * Template tags for generating `lorem ipsum` text already available in 'django.contrib.webdesign`_.
 

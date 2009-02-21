@@ -30,18 +30,6 @@ don't need to run ``manage.py syncdb`` before using it.
 .. _Subversion: http://subversion.tigris.org/
 
 
-Using ``distutils``
--------------------
-
-Alternatively, you can download a packaged version of the entire
-application and use Python's ``distutils`` to install it::
-
-    wget http://django-greeking.googlecode.com/files/django-greeking-0.2-tar.gz
-    tar xvzf django-greeking-0.2-tar.gz
-    cd django-greeking-0.2-tar.gz
-    python setup.py install
-
-
 Feature overview
 ================
 

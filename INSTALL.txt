@@ -1,0 +1,9 @@
+Thanks for downloading greeking.
+
+To install it, run the following command inside this directory::
+
+    python setup.py install
+
+Note that this application requires Python 2.3 or later, and a recent
+Subversion checkout of Django; you can obtain Python from
+http://www.python.org/ and Django from http://www.djangoproject.com/.

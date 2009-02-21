@@ -1,0 +1,69 @@
+=========================
+Django Greeking
+=========================
+
+This is a small library of template tags and other template-related
+utilities for use with Django_. It contains a set of tools for printing
+filler text in your templates, a technique from the days of hot 
+type known as greeking.
+
+.. _Django: http://www.djangoproject.com/
+
+
+Downloading and installing
+==========================
+
+The easiest download method is a Subversion_ checkout; all of the code
+is maintained in a Subversion repository, and checking the code out
+from the repository makes it easy to handle updates. To download and
+install, simply execute this command from a directory that's on your
+Python path::
+
+    svn co http://django-greeking.googlecode.com/svn/trunk/ django-greeking
+
+This will create a directory called ``django-greeking``, and download
+the current code into it. From there, you should be able to add
+``greeking`` to the ``INSTALLED_APPS`` setting of any Django
+project and have it work. This application provides no models, so you
+don't need to run ``manage.py syncdb`` before using it.
+
+.. _Subversion: http://subversion.tigris.org/
+
+
+Using ``distutils``
+-------------------
+
+Alternatively, you can download a packaged version of the entire
+application and use Python's ``distutils`` to install it::
+
+    wget http://django-greeking.googlecode.com/files/django-greeking-0.2-tar.gz
+    tar xvzf django-greeking-0.2-tar.gz
+    cd django-greeking-0.2-tar.gz
+    python setup.py install
+
+
+Feature overview
+================
+
+Currently, three components are bundled into ``greeking``:
+
+* Template tags for generating `lorem ipsum` text already available in 'django.contrib.webdesign`_.
+
+* Template tags for printing snippets from Lewis Carroll's poem `Jabberwocky`_.
+
+* Template tags for printing pangrams_ in a variety of languages.
+
+* Template tags for importing an object_list of filler comments for use in greeking 'django.contrib.comments`_.
+    
+
+.. _django.contrib.webdesign: http://docs.djangoproject.com/en/dev/ref/contrib/webdesign/#ref-contrib-webdesign
+.. _Jabberwocky by Lewis Carroll: http://en.wikipedia.org/wiki/Jabberwocky
+.. _A pangram is a phrase that includes every letter of an alphabet. 
+.. _django.contrib.comments: http://docs.djangoproject.com/en/dev/ref/contrib/comments/
+
+Credits
+=======
+- Packaging structure, documentation and style shamelessly ripped from James Bennett of http://b-list.org. I hope he doesn't hate me.
+- Pangrams are drawn from Markus Kuhn at http://www.cl.cam.ac.uk/~mgk25/ucs/examples/quickbrown.txt
+- Comments drawn from the work of giants of our time.
+

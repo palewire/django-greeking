@@ -9,27 +9,6 @@ type known as greeking.
 
 .. _Django: http://www.djangoproject.com/
 
-
-Downloading and installing
-==========================
-
-The easiest download method is a Subversion_ checkout; all of the code
-is maintained in a Subversion repository, and checking the code out
-from the repository makes it easy to handle updates. To download and
-install, simply execute this command from a directory that's on your
-Python path::
-
-    svn co http://django-greeking.googlecode.com/svn/trunk/ django-greeking
-
-This will create a directory called ``django-greeking``, and download
-the current code into it. From there, you should be able to add
-``greeking`` to the ``INSTALLED_APPS`` setting of any Django
-project and have it work. This application provides no models, so you
-don't need to run ``manage.py syncdb`` before using it.
-
-.. _Subversion: http://subversion.tigris.org/
-
-
 Feature overview
 ================
 

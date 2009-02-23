@@ -18,6 +18,12 @@ HIPHOP = {
 4: {'user_name': 'AZ', 'user_email': 'az@brooklyn.com', 'user_url': 'http://www.lyricsdepot.com/az/rather-unique.html', 'comment': "So it's gonna take more than your astrologist to knowledge this. A physiologist couldn't even figure out the exoticness. Raps demolishing certified the way I style it. My wordplay blaze with the rays of ultraviolence.", 'submit_date': make_datetime('1995-10-10 10:10')},
 5: {'user_name': 'Missy Elliot', 'user_email': 'missy@underconstruction.com', 'user_url': 'http://www.lyricstime.com/missy-elliott-back-in-the-day-lyrics.html', 'comment': "British Knights and gold chains. Do the prep and cabbage patch. And wear your laces all fat. Back in the dayyyyyyyy, hey hey. Hip-Hop has chaaaanged.", 'submit_date': make_datetime('2002-11-12 00:01')}
 }
+6: {'user_name': 'Butterfly', 'user_email': 'butterfly@9thwonder.org', 'user_url': 'http://www.lyricstime.com/digable-planets-rebirth-of-slick-cool-like-dat-lyrics.html', 'comment': "How was the buzz entire hip hop era? Was fresh and fat since they started sayin’ Audi. Cause funks made fat from right beneath my hoodie. The puba of the styles like Miles and shit. Like sixties funky worms with waves and perms. Just sendin’ chunky rhythms right down ya block. We be to rap what key be to lock.", 'submit_date': make_datetime('1993-09-27 00:01')}
+}
+7: {'user_name': 'Phife Dawg', 'user_email': 'diggy@canikick.it', 'user_url': 'http://www.lyricstime.com/a-tribe-called-quest-award-tour-lyrics.html', 'comment': "Comin’ with more hits than the Braves and the Yankees. Livin’ mad phat like an oversized Bam-bi. The wackest crews try to dis, it makes me laugh. When my track record’s longer than a DC-20 aircraft. So next time that you think you want somethin’ here. Make somethin’ differ, take that garbage to St. Elsewhere.", 'submit_date': make_datetime('1993-11-09 00:01')}
+}
+8: {'user_name': 'Del', 'user_email': 'funkee@sunnymeadowz.com', 'user_url': 'http://www.lyricstime.com/del-the-funky-homosapien-sunny-meadowz-lyrics.html', 'comment': "I sit and write scriptures by the old wishin’ well. Collect all my notes and sail a boat back to Berkeley. Tries fill my vibe ’cause my style is rather earthly. Some say it's wack but I ain’t tryin’ to hear it. As long as what I do contains my soul and my spirit.", 'submit_date': make_datetime('1991-10-22 00:01')}
+}
 
 
 class Quotable:

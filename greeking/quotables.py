@@ -31,7 +31,7 @@ class Quotable:
     Based on the models in django.contrib.comments.models
     """
     def __init__(self, comment_id, user_name, user_email, user_url, comment, submit_date):
-        self.id = comment_id
+        self.comment_id = comment_id
         self.user_name = user_name
         self.user_email = user_email
         self.user_url = user_url
@@ -51,12 +51,12 @@ def get_comment_list():
     comment_list = []
     for k in HIPHOP.keys(): 
         q = Quotable(
-                id=k,
+                comment_id=k,
                 user_name=HIPHOP[k]['user_name'],
                 user_email=HIPHOP[k]['user_email'],
                 user_url=HIPHOP[k]['user_url'],
                 comment=HIPHOP[k]['comment'],
-                submit_date=HIPHOP[k]['submit_date'],
+                submit_date=HIPHOP[k]['submit_date']
             )
         comment_list.append(q)
     return comment_list

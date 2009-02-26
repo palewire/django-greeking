@@ -10,7 +10,7 @@ from greeking import quotables
 
 class CommentListNode(template.Node):
     def render(self, context):
-        context['comment_list'] = quotables.get_comment_list(quotables.HIPHOP)
+        context['comment_list'] = quotables.get_comment_list()
         return ''
 
 

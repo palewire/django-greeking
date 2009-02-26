@@ -2,10 +2,10 @@
 from django import template
 register = template.Library()
 
-from projects.greeking.lorem_ipsum import words, paragraphs
-from projects.greeking.jabberwocky import get_grafs, get_html as get_jabberwocky_html
-from projects.greeking.pangrams import get_pangram, get_html as get_pangram_html
-from projects.greeking import quotables
+from greeking.lorem_ipsum import words, paragraphs
+from greeking.jabberwocky import get_grafs, get_html as get_jabberwocky_html
+from greeking.pangrams import get_pangram, get_html as get_pangram_html
+from greeking import quotables
 
 
 class CommentListNode(template.Node):

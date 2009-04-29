@@ -22,6 +22,7 @@ HIPHOP = {
 8: {'user_name': 'Del', 'user_email': 'funkee@sunnymeadowz.com', 'user_url': 'http://www.lyricstime.com/del-the-funky-homosapien-sunny-meadowz-lyrics.html', 'comment': "I sit and write scriptures by the old wishin’ well. Collect all my notes and sail a boat back to Berkeley. Tries fill my vibe ’cause my style is rather earthly. Some say it's wack but I ain’t tryin’ to hear it. As long as what I do contains my soul and my spirit.", 'submit_date': make_datetime('1991-10-22 00:01')},
 9: {'user_name': 'Notorious B.I.G.', 'user_email': 'bee.eye.gee@brooklyn.com', 'user_url': 'http://www.azlyrics.com/lyrics/notoriousbig/ilovethedough.html', 'comment': "Now we buy homes in unfamiliar places. Tito smile everytime he see our faces.", 'submit_date': make_datetime('1997-03-25 00:16')},
 10: {'user_name': 'Jay-Z', 'user_email': 'jigga@brooklyn.com', 'user_url': 'http://www.lyricsmode.com/lyrics/s/scarface/guess_whos_back_feat_jay_z_beanie_sigel.html', 'comment': "Face it y'all, y'all n----- playin' basic ball. I'm on the block like I'm eight feet tall.", 'submit_date': make_datetime('2002-08-06 05:00')},
+11: {'user_name': 'Skoob', 'user_email': 'skoob@brooklyn.com', 'user_url': 'http://www.musicsonglyrics.com/D/dasefxlyrics/dasefxrealhiphoplyrics.htm', 'comment': 'We the ruffest dream team, reign Supreme like a Cutlass. Get duckets, the dough. Can\'t touch the flow.', 'submit_date': make_datetime('1995-08-26 12:01') },
 }
 
 

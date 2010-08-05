@@ -1,10 +1,10 @@
 h1. Django Greeking
 
-This is a small library of template tags and other template-related utilities for use with "Django:http://www.djangoproject.com/. It contains a set of tools for printing filler text in your templates, a technique from the days of hot type known as greeking.
+This is a small library of template tags and other template-related utilities for use with "Django":http://www.djangoproject.com/. It contains a set of tools for printing filler text in your templates, a technique from the days of hot type known as greeking.
 
 h3. What it does
 
-Currently, four components are bundled into *greeking*:
+Currently, four components are bundled into greeking:
 
 * Template tags for generating lorem ipsum text already available in "django.contrib.webdesign":http://docs.djangoproject.com/en/dev/ref/contrib/webdesign/#ref-contrib-webdesign.
 * Template tags for printing snippets from Lewis Carroll's poem "Jabberwocky":http://en.wikipedia.org/wiki/Jabberwocky.

@@ -1,0 +1,19 @@
+h1. Django Greeking
+
+This is a small library of template tags and other template-related utilities for use with "Django:http://www.djangoproject.com/. It contains a set of tools for printing filler text in your templates, a technique from the days of hot type known as greeking.
+
+h3. What it does
+
+Currently, four components are bundled into *greeking*:
+
+* Template tags for generating lorem ipsum text already available in "django.contrib.webdesign":http://docs.djangoproject.com/en/dev/ref/contrib/webdesign/#ref-contrib-webdesign.
+* Template tags for printing snippets from Lewis Carroll's poem "Jabberwocky":http://en.wikipedia.org/wiki/Jabberwocky.
+* Template tags for printing pangrams_ in a variety of languages. A pangram is a phrase that includes every letter of an alphabet. 
+* Template tags for importing an object_list of filler comments for use in greeking "django.contrib.comments":http://docs.djangoproject.com/en/dev/ref/contrib/comments/.
+
+h3. Credits
+
+* Packaging structure, documentation and style shamelessly ripped from James Bennett of http://b-list.org. I hope he doesn't hate me.
+* Pangrams are drawn from Markus Kuhn at http://www.cl.cam.ac.uk/~mgk25/ucs/examples/quickbrown.txt
+* Comments drawn from the work of giants of our time.
+

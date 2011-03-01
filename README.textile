@@ -4,7 +4,7 @@ This is a small library of template tags and other template-related utilities fo
 
 h3. What it does
 
-Currently, five templatetags are bundled into greeking. They can:
+Currently, five template tags are bundled into greeking. They can:
 
 * Generate the lorem ipsum text already available in "django.contrib.webdesign":http://docs.djangoproject.com/en/dev/ref/contrib/webdesign/#ref-contrib-webdesign.
 * Generate filler images of kittens from "placekitten.com":http://www.placekitten.com

@@ -7,6 +7,7 @@ h3. What it does
 Currently, four components are bundled into greeking:
 
 * Template tags for generating lorem ipsum text already available in "django.contrib.webdesign":http://docs.djangoproject.com/en/dev/ref/contrib/webdesign/#ref-contrib-webdesign.
+* Template tags for generating filler images of kittens from "placekitten.com":http://www.placekitten.com
 * Template tags for printing snippets from Lewis Carroll's poem "Jabberwocky":http://en.wikipedia.org/wiki/Jabberwocky.
 * Template tags for printing pangrams_ in a variety of languages. A pangram is a phrase that includes every letter of an alphabet. 
 * Template tags for importing an object_list of filler comments for use in greeking "django.contrib.comments":http://docs.djangoproject.com/en/dev/ref/contrib/comments/.

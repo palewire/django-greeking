@@ -1,11 +1,37 @@
 # -*- coding: utf-8 -*-
 from django import template
 register = template.Library()
-
+from greeking.placekittens import get_url
 from greeking.lorem_ipsum import words, paragraphs
 from greeking.jabberwocky import get_grafs, get_html as get_jabberwocky_html
 from greeking.pangrams import get_pangram, get_html as get_pangram_html
 from greeking import quotables
+
+
+class PlaceKittenNode(template.Node):
+    def __init__(self, width=200, height=200):
+        self.width = width
+        self.height = height
+    
+    def render(self, context):
+        return '<img src="%s"/>' % get_url(self.width, self.height)
+
+
+def placekitten(parser, token):
+    """
+    Creates an image of a random kitten at the provided width and height.
+    
+    Usage format::
+        
+        {% placekitten [width] [height] %}
+        
+    """
+    bits = list(token.split_contents())
+    if len(bits) != 3:
+        raise template.TemplateSyntaxError("Incorrect format")
+    tagname, width, height = bits
+    return PlaceKittenNode(width=width, height=height)
+placekitten = register.tag(placekitten)
 
 
 class CommentListNode(template.Node):

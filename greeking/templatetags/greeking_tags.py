@@ -21,16 +21,29 @@ def placekitten(parser, token):
     """
     Creates an image of a random kitten at the provided width and height.
     
-    Usage format::
+    Usage format:
         
-        {% placekitten [width] [height] %}
+        {% placekitten [width] [height] [gray] %}
+        
+    Example usage:
+        
+        Color image at 250 wide and 400 high
+        {% placekitten 250 400 %}
+        
+        Grayscale image 100 wide and 100 high
+        {% placekitten 100 100 'gray' %}
         
     """
     bits = list(token.split_contents())
-    if len(bits) != 3:
+    if len(bits) > 4 or len(bits) < 3:
         raise template.TemplateSyntaxError("Incorrect format")
-    tagname, width, height = bits
-    return PlaceKittenNode(width=width, height=height)
+    tagname, width, height = bits[:3]
+    if len(bits) == 4:
+        if bits[3] == 'gray':
+            color = False
+        else:
+            color = True
+    return PlaceKittenNode(width=width, height=height, color=color)
 placekitten = register.tag(placekitten)
 
 

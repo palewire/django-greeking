@@ -94,7 +94,6 @@ class LoremNode(template.Node):
         return u'\n\n'.join(paras)
 
 
-#@register.tag
 def lorem(parser, token):
     """
     Creates random Latin text useful for providing test data in templates.
@@ -197,7 +196,6 @@ class JabberwockyNode(template.Node):
         return get_jabberwocky_html(get_grafs(count))
 
 
-#@register.tag
 def jabberwocky(parser, token):
     """
     Prints paragraphs from Lewis Caroll's poem Jabberwocky for greeking in templates.

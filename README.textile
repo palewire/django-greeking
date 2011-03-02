@@ -1,6 +1,11 @@
-h1. Django Greeking
+<pre><code> _____   _____    _____   _____   _   _    _   __   _   _____  
+/  ___| |  _  \  | ____| | ____| | | / /  | | |  \ | | /  ___| 
+| |     | |_| |  | |__   | |__   | |/ /   | | |   \| | | |     
+| |  _  |  _  /  |  __|  |  __|  | |\ \   | | | |\   | | |  _  
+| |_| | | | \ \  | |___  | |___  | | \ \  | | | | \  | | |_| | 
+\_____/ |_|  \_\ |_____| |_____| |_|  \_\ |_| |_|  \_| \_____/</code></ore>
 
-This is a small library of template tags and other template-related utilities for use with "Django":http://www.djangoproject.com/. It contains a set of tools for printing filler text in your templates, a technique from the days of hot type known as greeking.
+A small library of template tags and other template-related utilities for use with "Django":http://www.djangoproject.com/. It contains a set of tools for printing filler text in your templates, a technique from the days of hot type known as greeking.
 
 h3. What it does
 

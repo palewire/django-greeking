@@ -9,12 +9,13 @@ from greeking import quotables
 
 
 class PlaceKittenNode(template.Node):
-    def __init__(self, width=200, height=200):
+    def __init__(self, width=200, height=200, color=True):
         self.width = width
         self.height = height
+        self.color = color
     
     def render(self, context):
-        return '<img src="%s"/>' % get_url(self.width, self.height)
+        return '<img src="%s"/>' % get_url(self.width, self.height, color=self.color)
 
 
 def placekitten(parser, token):
@@ -31,7 +32,7 @@ def placekitten(parser, token):
         {% placekitten 250 400 %}
         
         Grayscale image 100 wide and 100 high
-        {% placekitten 100 100 'gray' %}
+        {% placekitten 100 100 gray %}
         
     """
     bits = list(token.split_contents())
@@ -42,7 +43,9 @@ def placekitten(parser, token):
         if bits[3] == 'gray':
             color = False
         else:
-            color = True
+            raise template.TemplateSyntaxError("Incorrect format")
+    else:
+        color = True
     return PlaceKittenNode(width=width, height=height, color=color)
 placekitten = register.tag(placekitten)
 

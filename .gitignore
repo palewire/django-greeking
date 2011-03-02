@@ -1,3 +1,4 @@
+project/*
 *egg-info*
 *.pyc
 build/*

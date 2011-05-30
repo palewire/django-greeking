@@ -1,11 +1,77 @@
 # -*- coding: utf-8 -*-
 from django import template
 register = template.Library()
-from greeking.placekittens import get_url
 from greeking.lorem_ipsum import words, paragraphs
+from greeking.lorem_pixum import get_url as get_lorem_pixum_url
+from greeking.placekittens import get_url as get_placekitten_url
 from greeking.jabberwocky import get_grafs, get_html as get_jabberwocky_html
 from greeking.pangrams import get_pangram, get_html as get_pangram_html
 from greeking import quotables
+
+
+class LoremPixumNode(template.Node):
+    def __init__(self, width=200, height=200, color=True, category=None):
+        self.width = width
+        self.height = height
+        self.color = color
+        self.category= category
+    
+    def render(self, context):
+        return '<img src="%s"/>' % get_lorem_pixum_url(
+            self.width,
+            self.height,
+            color=self.color,
+            category=self.category,
+        )
+
+
+def lorem_pixum(parser, token):
+    """
+    Creates a placeholder image at the provided width and height.
+        
+    There are also options to make the image grayscale, or specify the category
+    the image is drawn from from (i.e. fashion, animals, etc.)
+    
+    Usage format:
+        
+        {% lorem_pixum [width] [height] [gray] [category] %}
+        
+    Example usage:
+        
+        Color image at 250 wide and 400 high
+        {% lorem_pixum 250 400 %}
+        
+        Grayscale image 100 wide and 100 high
+        {% lorem_pixum 100 100 gray %}
+        
+        Color image from the sports category
+        {% lorem_pixum 250 400 sports %}
+        
+        Grayscale image from the sports category
+        {% lorem_pixum 250 400 gray sports %}
+        
+    """
+    bits = list(token.split_contents())
+    # Validate the length
+    if len(bits) > 5 or len(bits) < 3:
+        raise template.TemplateSyntaxError("Incorrect format")
+    # Parse the three different lengths allowed
+    if len(bits) == 3:
+        tagname, width, height = bits[:3]
+        return LoremPixumNode(width=width, height=height, color=True)
+    elif len(bits) == 4:
+        tagname, width, height, color_or_category = bits[:4]
+        if color_or_category == 'gray':
+            return LoremPixumNode(width=width, height=height, color=False)
+        else:
+            return LoremPixumNode(width=width, height=height, color=True, category=color_or_category)
+    elif len(bits) == 5:
+        tagname, width, height, color, category = bits[:5]
+        if color == 'gray':
+            return LoremPixumNode(width=width, height=height, color=False, category=category)
+        else:
+            raise template.TemplateSyntaxError("Incorrect format")
+lorem_pixum = register.tag(lorem_pixum)
 
 
 class PlaceKittenNode(template.Node):
@@ -15,7 +81,11 @@ class PlaceKittenNode(template.Node):
         self.color = color
     
     def render(self, context):
-        return '<img src="%s"/>' % get_url(self.width, self.height, color=self.color)
+        return '<img src="%s"/>' % get_placekitten_url(
+            self.width,
+            self.height,
+            color=self.color
+        )
 
 
 def placekitten(parser, token):

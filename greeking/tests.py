@@ -70,14 +70,14 @@ class GreekingTemplateTagTests(TestCase):
         """
         t1 = "{% load greeking_tags %}{% lorem_pixum 200 200 %}"
         ctx, out = self.render(t1)
-        self.assertEqual(out, '<img src="http://lorempixum.com/200/200/"/>')
+        self.assertEqual(out, u'<img src="http://lorempixum.com/200/200/"/>')
         t2 = "{% load greeking_tags %}{% lorem_pixum 200 200 gray %}"
         ctx, out = self.render(t2)
-        self.assertEqual(out, '<img src="http://lorempixum.com/g/200/200/"/>')
+        self.assertEqual(out, u'<img src="http://lorempixum.com/g/200/200/"/>')
         t3 = "{% load greeking_tags %}{% lorem_pixum 250 400 sports %}"
         ctx, out = self.render(t3)
-        self.assertEqual(out, '<img src="http://lorempixum.com/250/400/sports/>')
+        self.assertEqual(out, u'<img src="http://lorempixum.com/250/400/sports"/>')
         t4 = "{% load greeking_tags %}{% lorem_pixum 250 400 gray sports %}"
         ctx, out = self.render(t4)
-        self.assertEqual(out, '<img src="http://lorempixum.com/g/250/400/sports/>')
+        self.assertEqual(out, u'<img src="http://lorempixum.com/g/250/400/sports"/>')
 

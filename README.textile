@@ -67,4 +67,4 @@ h3. Credits
 * Packaging structure, documentation and style shamelessly ripped from James Bennett of http://b-list.org. I hope he doesn't hate me.
 * Pangrams are drawn from Markus Kuhn at http://www.cl.cam.ac.uk/~mgk25/ucs/examples/quickbrown.txt
 * Comments drawn from the work of giants of our time.
-
+* Continuous integration testing provided by Travis CI at http://travis-ci.org/#!/palewire/django-greeking

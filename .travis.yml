@@ -13,4 +13,4 @@ env:
 install:
  - pip install -q Django==$DJANGO_VERSION --use-mirrors
 # command to run tests
-script: python qiktest.py greeking
+script: python quicktest.py greeking

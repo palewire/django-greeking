@@ -4,13 +4,13 @@ import argparse
 from django.conf import settings
 
 
-class QikDjangoTest(object):
+class QuickDjangoTest(object):
     """
     A quick way to run the Django test suite without a fully-configured project.
     
     Example usage:
     
-        >>> QikDjangoTest('app1', 'app2')
+        >>> QuickDjangoTest('app1', 'app2')
     
     Based on a script published by Lukasz Dziedzia at: 
     http://stackoverflow.com/questions/3841725/how-to-launch-tests-for-django-reusable-app
@@ -86,7 +86,7 @@ if __name__ == '__main__':
     
     Example usage:
     
-        $ python qiktest.py app1 app2
+        $ python quicktest.py app1 app2
     
     """
     parser = argparse.ArgumentParser(
@@ -95,4 +95,4 @@ if __name__ == '__main__':
     )
     parser.add_argument('apps', nargs='+', type=str)
     args = parser.parse_args()
-    QikDjangoTest(*args.apps)
+    QuickDjangoTest(*args.apps)

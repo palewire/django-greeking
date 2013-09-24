@@ -7,6 +7,8 @@
 
 Tools for printing filler text in your "Django":http://www.djangoproject.com/ templates, a technique from the days of hot type known as greeking.
 
+!https://travis-ci.org/palewire/django-greeking.png?branch=master!:https://travis-ci.org/palewire/django-greeking
+
 h3. What it does
 
 Currently, five template tags are bundled into greeking. They can:

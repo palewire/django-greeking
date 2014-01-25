@@ -15,4 +15,5 @@ install:
 # command to run tests
 script:
   - pep8 greeking
+  - pyflakes greeking
   - python quicktest.py greeking

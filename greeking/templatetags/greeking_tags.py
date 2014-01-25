@@ -238,7 +238,6 @@ class PangramNode(template.Node):
         return get_pangram_html(pangram)
 
 
-#@register.tag
 def pangram(parser, token):
     """
     Prints a pangram in the specified language.

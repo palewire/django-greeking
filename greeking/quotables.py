@@ -29,9 +29,6 @@ class Quotable:
         self.comment = comment
         self.submit_date = submit_date
 
-    def print_comment(self):
-        print "%s: %s" % (self.user_name, self.comment)
-
 
 def make_datetime(date_string):
     """Convert a string into a datetime object."""

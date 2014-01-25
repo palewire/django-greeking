@@ -16,4 +16,7 @@ install:
 script:
   - pep8 greeking
   - pyflakes greeking
-  - python quicktest.py greeking
+  - coverage run quicktest.py greeking
+# Report coverage results to coveralls.io
+after_success:
+ - coveralls

@@ -1,0 +1,10 @@
+[run]
+include =
+    greeking/*
+
+omit =
+    greeking/tests.py
+
+[report]
+exclude_lines =
+    pragma: no cover

@@ -18,7 +18,7 @@ Django template tools for printing filler, a technique from the days of hot type
 
 ## Features
 
-Currently, six template tags are bundled into greeking. They can:
+Currently, seven template tags are bundled into greeking. They can:
 
 * Generate the lorem ipsum text already available in [django.contrib.webdesign](http://docs.djangoproject.com/en/dev/ref/contrib/webdesign/#ref-contrib-webdesign).
 * Generate filler images from [lorempixum.com](http://lorempixum.com), [Fill Murray](http://www.fillmurray.com/) and [placekitten.com](http://www.placekitten.com).

@@ -74,7 +74,10 @@ class GreekingTemplateTagTests(TestCase):
         """
         t1 = "{% load greeking_tags %}{% fillmurray 200 200 %}"
         ctx, out = self.render(t1)
-        self.assertEqual(out, '<img src="http://www.fillmurray.com/200/200/"/>')
+        self.assertEqual(
+            out,
+            '<img src="http://www.fillmurray.com/200/200/"/>'
+        )
         t2 = "{% load greeking_tags %}{% fillmurray 200 200 gray %}"
         ctx, out = self.render(t2)
         self.assertEqual(

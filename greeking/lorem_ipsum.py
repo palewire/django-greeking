@@ -82,6 +82,7 @@ def paragraph():
         ' '.join([sentence() for i in range(random.randint(1, 4))])
     )
 
+
 def paragraphs(count, common=True):
     """
     Returns a list of paragraphs as returned by paragraph().

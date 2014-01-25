@@ -32,7 +32,7 @@ class GreekingTemplateTagTests(TestCase):
         """
         Tests the tag for pulling pangrams
         """
-        from greeking.pangrams import PANGRAMS, get_pangram, get_html
+        from greeking.pangrams import PANGRAMS
         languages = list(PANGRAMS.keys())
         for language in languages:
             t = "{% load greeking_tags %}{% pangram " + language + " %}"

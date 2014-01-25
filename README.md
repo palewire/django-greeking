@@ -16,7 +16,7 @@ Django template tools for printing filler text, a technique from the days of hot
 * Testing: [https://travis-ci.org/palewire/django-greeking](https://travis-ci.org/palewire/django-greeking)
 * Coverage: [https://coveralls.io/r/palewire/django-greeking](https://coveralls.io/r/palewire/django-greeking)
 
-### Features
+## Features
 
 Currently, six template tags are bundled into greeking. They can:
 
@@ -26,13 +26,13 @@ Currently, six template tags are bundled into greeking. They can:
 * Print pangrams in a variety of languages. A pangram is a phrase that includes every letter of an alphabet.
 * Import an object_list of filler comments for use in greeking [Django's 'contrib' comments app](http://docs.djangoproject.com/en/dev/ref/contrib/comments/).
 
-### Installation
+## Installation
 
 ```bash
 pip install greeking
 ```
 
-### Getting started
+## Getting started
 
 Before you can use any of the template tags, you have to add the app to the 
 ``INSTALLED_APPS`` your settings.py file, like so:
@@ -88,7 +88,7 @@ Like Jabberywocky...
 {% endfor %}
 ```
 
-### Credits
+## Credits
 
 * Pangrams are drawn from [Markus Kuhn](http://www.cl.cam.ac.uk/~mgk25/ucs/examples/quickbrown.txt).
 * Comments drawn from the work of giants of our time.

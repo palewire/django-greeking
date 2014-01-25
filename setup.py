@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='greeking',
-    version='0.2',
+    version='0.200',
     description='Django template tools for printing filler text, a \
     technique from the days of hot type known as greeking.',
     author='Ben Welsh',

@@ -1,13 +1,60 @@
 # -*- coding: utf-8 -*-
 import six
 from django import template
-register = template.Library()
+from greeking import quotables
 from greeking.lorem_ipsum import words, paragraphs
+from greeking.fillmurray import get_url as get_fillmurray_url
 from greeking.lorem_pixum import get_url as get_lorem_pixum_url
 from greeking.placekittens import get_url as get_placekitten_url
-from greeking.jabberwocky import get_grafs, get_html as get_jabberwocky_html
 from greeking.pangrams import get_pangram, get_html as get_pangram_html
-from greeking import quotables
+from greeking.jabberwocky import get_grafs, get_html as get_jabberwocky_html
+
+register = template.Library()
+
+
+class FillMurrayNode(template.Node):
+    def __init__(self, width=200, height=200, color=True):
+        self.width = width
+        self.height = height
+        self.color = color
+
+    def render(self, context):
+        return '<img src="%s"/>' % get_fillmurray_url(
+            self.width,
+            self.height,
+            color=self.color
+        )
+
+
+def fillmurray(parser, token):
+    """
+    Creates a random image of Bill Murray at the provided width and height.
+
+    Usage format:
+
+        {% fillmurray [width] [height] [gray] %}
+
+    Example usage:
+
+        Color image at 250 wide and 400 high
+        {% fillmurray 250 400 %}
+
+        Grayscale image 100 wide and 100 high
+        {% fillmurray 100 100 gray %}
+    """
+    bits = list(token.split_contents())
+    if len(bits) > 4 or len(bits) < 3:
+        raise template.TemplateSyntaxError("Incorrect format")
+    tagname, width, height = bits[:3]
+    if len(bits) == 4:
+        if bits[3] == 'gray':
+            color = False
+        else:
+            raise template.TemplateSyntaxError("Incorrect format")
+    else:
+        color = True
+    return FillMurrayNode(width=width, height=height, color=color)
+fillmurray = register.tag(fillmurray)
 
 
 class LoremPixumNode(template.Node):

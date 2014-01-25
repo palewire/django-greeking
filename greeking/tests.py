@@ -68,6 +68,30 @@ class GreekingTemplateTagTests(TestCase):
             for k, v in list(comment_dict.items()):
                 self.assertEqual(v, match[k])
 
+    def testFillMuray(self):
+        """
+        Tests the tag for pulling Bill Murray images.
+        """
+        t1 = "{% load greeking_tags %}{% fillmurray 200 200 %}"
+        ctx, out = self.render(t1)
+        self.assertEqual(out, '<img src="http://www.fillmurray.com/200/200/"/>')
+        t2 = "{% load greeking_tags %}{% fillmurray 200 200 gray %}"
+        ctx, out = self.render(t2)
+        self.assertEqual(
+            out,
+            '<img src="http://www.fillmurray.com/g/200/200/"/>'
+        )
+        self.assertRaises(
+            TemplateSyntaxError,
+            self.render,
+            "{% load greeking_tags %}{% fillmurray foobar %}"
+        )
+        self.assertRaises(
+            TemplateSyntaxError,
+            self.render,
+            "{% load greeking_tags %}{% fillmurray 200 200 blue %}"
+        )
+
     def testPlaceKittens(self):
         """
         Tests the tag for pulling placekitten images.

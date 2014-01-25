@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import six
 from django import template
 register = template.Library()
 from greeking.lorem_ipsum import words, paragraphs
@@ -173,7 +174,7 @@ class LoremNode(template.Node):
             paras = paragraphs(count, common=self.common)
         if self.method == 'p':
             paras = ['<p>%s</p>' % p for p in paras]
-        return u'\n\n'.join(paras)
+        return six.text_type('\n\n'.join(paras))
 
 
 def lorem(parser, token):

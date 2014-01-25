@@ -17,4 +17,7 @@ setup(name='greeking',
                    "Programming Language :: Python",
                    "Topic :: Software Development :: Libraries :: Python Modules"
                    ],
+      install_requires=[
+        'six==1.5.2'
+      ],
      )

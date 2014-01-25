@@ -2,6 +2,7 @@
 """
 Pull text from Lewis Carroll's poem Jabberwocky for template greeking.
 """
+import six
 
 VERSE = """'Twas brillig, and the slithy toves
 Did gyre and gimble in the wabe;
@@ -56,4 +57,4 @@ def get_html(grafs):
     """
     html = ['<p>%s</p>' % p for p in grafs]
     html = [p.replace("\n", "<br>") for p in html]
-    return u'\n\n'.join(html)
+    return six.text_type('\n\n'.join(html))

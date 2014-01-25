@@ -38,6 +38,7 @@ Did gyre and gimble in the wabe;
 All mimsy were the borogoves,
 And the mome raths outgrabe."""
 
+
 def get_grafs(count=7):
     """
     Returns the specified number of paragraphs from "Jabberwocky."
@@ -45,11 +46,12 @@ def get_grafs(count=7):
     The default is seven, which will return the entire poem.
     """
     return VERSE.split("\n\n")[0:count]
-    
+
+
 def get_html(grafs):
     """
     Renders the grafs provided in HTML by wrapping them in <p> tags.
-    
+
     Linebreaks are replaced with <br> tags.
     """
     html = ['<p>%s</p>' % p for p in grafs]

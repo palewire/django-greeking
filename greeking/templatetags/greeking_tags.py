@@ -14,8 +14,8 @@ class LoremPixumNode(template.Node):
         self.width = width
         self.height = height
         self.color = color
-        self.category= category
-    
+        self.category = category
+
     def render(self, context):
         return '<img src="%s"/>' % get_lorem_pixum_url(
             self.width,
@@ -28,28 +28,27 @@ class LoremPixumNode(template.Node):
 def lorem_pixum(parser, token):
     """
     Creates a placeholder image at the provided width and height.
-        
+
     There are also options to make the image grayscale, or specify the category
     the image is drawn from from (i.e. fashion, animals, etc.)
-    
+
     Usage format:
-        
+
         {% lorem_pixum [width] [height] [gray] [category] %}
-        
+
     Example usage:
-        
+
         Color image at 250 wide and 400 high
         {% lorem_pixum 250 400 %}
-        
+
         Grayscale image 100 wide and 100 high
         {% lorem_pixum 100 100 gray %}
-        
+
         Color image from the sports category
         {% lorem_pixum 250 400 sports %}
-        
+
         Grayscale image from the sports category
         {% lorem_pixum 250 400 gray sports %}
-        
     """
     bits = list(token.split_contents())
     # Validate the length
@@ -64,11 +63,21 @@ def lorem_pixum(parser, token):
         if color_or_category == 'gray':
             return LoremPixumNode(width=width, height=height, color=False)
         else:
-            return LoremPixumNode(width=width, height=height, color=True, category=color_or_category)
+            return LoremPixumNode(
+                width=width,
+                height=height,
+                color=True,
+                category=color_or_category
+            )
     elif len(bits) == 5:
         tagname, width, height, color, category = bits[:5]
         if color == 'gray':
-            return LoremPixumNode(width=width, height=height, color=False, category=category)
+            return LoremPixumNode(
+                width=width,
+                height=height,
+                color=False,
+                category=category
+            )
         else:
             raise template.TemplateSyntaxError("Incorrect format")
 lorem_pixum = register.tag(lorem_pixum)
@@ -79,7 +88,7 @@ class PlaceKittenNode(template.Node):
         self.width = width
         self.height = height
         self.color = color
-    
+
     def render(self, context):
         return '<img src="%s"/>' % get_placekitten_url(
             self.width,
@@ -91,19 +100,18 @@ class PlaceKittenNode(template.Node):
 def placekitten(parser, token):
     """
     Creates an image of a random kitten at the provided width and height.
-    
+
     Usage format:
-        
+
         {% placekitten [width] [height] [gray] %}
-        
+
     Example usage:
-        
+
         Color image at 250 wide and 400 high
         {% placekitten 250 400 %}
-        
+
         Grayscale image 100 wide and 100 high
         {% placekitten 100 100 gray %}
-        
     """
     bits = list(token.split_contents())
     if len(bits) > 4 or len(bits) < 3:
@@ -127,7 +135,7 @@ class CommentListNode(template.Node):
 
 
 def greek_comment_list(parser, token):
-    """ 
+    """
     Allows a template-level call of filler comments.
 
     Example usage:
@@ -137,8 +145,12 @@ def greek_comment_list(parser, token):
                 <p>{{ comment.comment }}</p>
                 <p>{{ comment.user_name }}</p>
                 <p>{{ comment.submit_date|date:"F j, Y" }}</p>
-                <p><a href="mailto:{{ comment.user_email }}">{{ comment.user_email }}</a></p>
-                <p><a href="{{ comment.user_url }}">{{ comment.user_url }}</a></p>
+                <p><a href="mailto:{{ comment.user_email }}">
+                    {{ comment.user_email }}
+                 </a></p>
+                <p><a href="{{ comment.user_url }}">
+                    {{ comment.user_url }}
+                </a></p>
         </div>
     {% endfor %}
     """
@@ -205,7 +217,9 @@ def lorem(parser, token):
         count = '1'
     count = parser.compile_filter(count)
     if len(bits) != 1:
-        raise template.TemplateSyntaxError("Incorrect format for %r tag" % tagname)
+        raise template.TemplateSyntaxError(
+            "Incorrect format for %r tag" % tagname
+        )
     return LoremNode(count, method, common)
 lorem = register.tag(lorem)
 
@@ -218,7 +232,9 @@ class PangramNode(template.Node):
         try:
             pangram = get_pangram(self.language)
         except KeyError:
-            raise template.TemplateSyntaxError("Could not find a pangram for %r abbreviation" % self.language)
+            raise template.TemplateSyntaxError(
+                "Could not find a pangram for %r abbreviation" % self.language
+            )
         return get_pangram_html(pangram)
 
 
@@ -229,7 +245,8 @@ def pangram(parser, token):
 
     A pangram is a phrase that includes every letter of an alphabet.
 
-    Default is English. For a full list of available languages, refer to pangrams.py
+    Default is English. For a full list of available languages,
+        refer to pangrams.py
 
     Usage format::
 
@@ -249,7 +266,9 @@ def pangram(parser, token):
     else:
         language = 'en'
     if len(bits) > 2:
-        raise template.TemplateSyntaxError("Incorrect format for %r tag" % tagname)
+        raise template.TemplateSyntaxError(
+            "Incorrect format for %r tag" % tagname
+        )
     return PangramNode(language)
 pangram = register.tag(pangram)
 
@@ -268,7 +287,8 @@ class JabberwockyNode(template.Node):
 
 def jabberwocky(parser, token):
     """
-    Prints paragraphs from Lewis Caroll's poem Jabberwocky for greeking in templates.
+    Prints paragraphs from Lewis Caroll's poem Jabberwocky for greeking
+    in templates.
 
     Usage format::
 
@@ -289,6 +309,8 @@ def jabberwocky(parser, token):
     else:
         count = None
     if len(bits) > 2:
-        raise template.TemplateSyntaxError("Incorrect format for %r tag" % tagname)
+        raise template.TemplateSyntaxError(
+            "Incorrect format for %r tag" % tagname
+        )
     return JabberwockyNode(count)
 jabberwocky = register.tag(jabberwocky)

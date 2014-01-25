@@ -18,13 +18,14 @@ CATEGORY_WHITELIST = [
     'transport',
 ]
 
+
 def get_url(width, height, color=True, category=None):
     """
     Craft the URL for a placeholder image.
-    
+
     By default they are in color. To retrieve a grayscale image, set
     the color kwarg to False.
-    
+
     To specify a photo from a specific category, pass it as 'category' kwarg.
     """
     d = dict(width=width, height=height)
@@ -38,5 +39,3 @@ def get_url(width, height, color=True, category=None):
             raise ValueError("Submitted category is invalid")
         url = url + category
     return url
-
-

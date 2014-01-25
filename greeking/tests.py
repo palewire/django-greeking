@@ -4,12 +4,12 @@ from django.utils.encoding import smart_unicode
 
 
 class GreekingTemplateTagTests(TestCase):
-    
+
     def render(self, t, **c):
         ctx = Context(c)
         out = Template(t).render(ctx)
         return ctx, out
-    
+
     def testJabberwocky(self):
         """
         Tests the tag for pulling jabberwocky
@@ -21,7 +21,7 @@ class GreekingTemplateTagTests(TestCase):
             ctx, out = self.render(t)
             match = get_html(get_grafs(graphs))
             self.assertEqual(out, match)
-        
+
     def testPangrams(self):
         """
         Tests the tag for pulling pangrams
@@ -33,7 +33,7 @@ class GreekingTemplateTagTests(TestCase):
             ctx, out = self.render(t)
             match = get_html(get_pangram(language))
             self.assertEqual(out, smart_unicode(match))
-    
+
     def testGreekComments(self):
         """
         Tests the tag for pulling greek comments
@@ -52,7 +52,7 @@ class GreekingTemplateTagTests(TestCase):
             match = quotables.HIPHOP[comment.comment_id]
             for k, v in comment_dict.items():
                 self.assertEqual(v, match[k])
-        
+
     def testPlaceKittens(self):
         """
         Tests the tag for pulling placekitten images.
@@ -63,21 +63,32 @@ class GreekingTemplateTagTests(TestCase):
         t2 = "{% load greeking_tags %}{% placekitten 200 200 gray %}"
         ctx, out = self.render(t2)
         self.assertEqual(out, '<img src="http://placekitten.com/g/200/200/"/>')
-    
+
     def testLoremPixum(self):
         """
         Tests the tag for pulling lorem pixum images.
         """
         t1 = "{% load greeking_tags %}{% lorem_pixum 200 200 %}"
         ctx, out = self.render(t1)
-        self.assertEqual(out, u'<img src="http://lorempixum.com/200/200/"/>')
+        self.assertEqual(
+            out,
+            u'<img src="http://lorempixum.com/200/200/"/>'
+        )
         t2 = "{% load greeking_tags %}{% lorem_pixum 200 200 gray %}"
         ctx, out = self.render(t2)
-        self.assertEqual(out, u'<img src="http://lorempixum.com/g/200/200/"/>')
+        self.assertEqual(
+            out,
+            u'<img src="http://lorempixum.com/g/200/200/"/>'
+        )
         t3 = "{% load greeking_tags %}{% lorem_pixum 250 400 sports %}"
         ctx, out = self.render(t3)
-        self.assertEqual(out, u'<img src="http://lorempixum.com/250/400/sports"/>')
+        self.assertEqual(
+            out,
+            u'<img src="http://lorempixum.com/250/400/sports"/>'
+        )
         t4 = "{% load greeking_tags %}{% lorem_pixum 250 400 gray sports %}"
         ctx, out = self.render(t4)
-        self.assertEqual(out, u'<img src="http://lorempixum.com/g/250/400/sports"/>')
-
+        self.assertEqual(
+            out,
+            u'<img src="http://lorempixum.com/g/250/400/sports"/>'
+        )

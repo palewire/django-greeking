@@ -5,7 +5,7 @@
 | |_| | | | \ \  | |___  | |___  | | \ \  | | | | \  | | |_| | 
 \_____/ |_|  \_\ |_____| |_____| |_|  \_\ |_| |_|  \_| \_____/</code></pre>
 
-Django template tools for printing filler text, a technique from the days of hot type known as greeking.
+Django template tools for printing filler, a technique from the days of hot type known as greeking.
 
 [![Build Status](https://travis-ci.org/palewire/django-greeking.png?branch=master)](https://travis-ci.org/palewire/django-greeking)
 [![PyPI version](https://badge.fury.io/py/greeking.png)](http://badge.fury.io/py/greeking)

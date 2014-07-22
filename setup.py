@@ -2,11 +2,11 @@ from setuptools import setup, find_packages
 
 setup(
     name='greeking',
-    version='1.0.0',
+    version='1.1.0',
     description='Django template tools for printing filler, a \
     technique from the days of hot type known as greeking.',
     author='Ben Welsh',
-    author_email='Benjamin.Welsh@latimes.com',
+    author_email='ben.welsh@gmail.com',
     url='http://github.com/palewire/django-greeking',
     download_url='http://github.com/palewire/django-greeking.git',
     packages=find_packages(),

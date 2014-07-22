@@ -5,8 +5,10 @@ Utility for generating placeholder images from http://placehold.it/
 URL = 'http://placehold.it/%(width)sx%(height)s/%(bcolor)s/%(tcolor)s/'
 
 
-def get_url(width, height=None, background_color="cccccc",
-    text_color="969696", text=None):
+def get_url(
+    width, height=None, background_color="cccccc",
+    text_color="969696", text=None
+):
     """
     Craft the URL for a placeholder image.
 

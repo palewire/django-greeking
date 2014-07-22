@@ -133,14 +133,16 @@ lorem_pixum = register.tag(lorem_pixum)
 
 
 @register.simple_tag
-def placeholdit(width, height, background_color="cccccc",
-        text_color="969696", text=None):
+def placeholdit(
+    width, height, background_color="cccccc",
+    text_color="969696", text=None
+):
     """
     Creates a placeholder image using placehold.it
 
     Usage format:
 
-        {% placeholdit [width] [height] [background_color] [text_color] [text] %}
+      {% placeholdit [width] [height] [background_color] [text_color] [text] %}
 
     Example usage:
 

@@ -5,6 +5,7 @@ from greeking import quotables
 from greeking.lorem_ipsum import words, paragraphs
 from greeking.fillmurray import get_url as get_fillmurray_url
 from greeking.lorem_pixum import get_url as get_lorem_pixum_url
+from greeking.placeholdit import get_url as get_placeholdit_url
 from greeking.placekittens import get_url as get_placekitten_url
 from greeking.pangrams import get_pangram, get_html as get_pangram_html
 from greeking.jabberwocky import get_grafs, get_html as get_jabberwocky_html
@@ -129,6 +130,39 @@ def lorem_pixum(parser, token):
         else:
             raise template.TemplateSyntaxError("Incorrect format")
 lorem_pixum = register.tag(lorem_pixum)
+
+
+@register.simple_tag
+def placeholdit(width, height, background_color="cccccc",
+        text_color="969696", text=None):
+    """
+    Creates a placeholder image using placehold.it
+
+    Usage format:
+
+        {% placeholdit [width] [height] [background_color] [text_color] [text] %}
+
+    Example usage:
+
+        Default image at 250 square
+        {% placeholdit 250 250 %}
+
+        100 wide and 200 high
+        {% placeholdit 100 200 %}
+
+        Custom background and text colors
+        {% placeholdit 100 200 background_color='fff' text_color=000' %}
+
+        Custom text
+        {% placeholdit 100 200 text='Hello LA' %}
+    """
+    return '<img src="%s"/>' % get_placeholdit_url(
+        width,
+        height,
+        background_color=background_color,
+        text_color=text_color,
+        text=text,
+    )
 
 
 class PlaceKittenNode(template.Node):

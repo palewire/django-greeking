@@ -9,7 +9,7 @@
         
         <link rel="shortcut icon" href="./img/favicon.ico">
 
-        <title>My Docs</title>
+        <title>django-greeking</title>
 
         <link href="./css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="./css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -35,7 +35,7 @@
             
 
             <!-- Main title -->
-            <a class="navbar-brand" href=".">My Docs</a>
+            <a class="navbar-brand" href=".">django-greeking</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -52,32 +52,98 @@
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#welcome-to-mkdocs">Welcome to MkDocs</a></li>
+        <li class="main active"><a href="#django-greeking">django-greeking</a></li>
         
-            <li><a href="#commands">Commands</a></li>
+            <li><a href="#features">Features</a></li>
         
-            <li><a href="#project-layout">Project layout</a></li>
+            <li><a href="#installation">Installation</a></li>
+        
+            <li><a href="#getting-started">Getting started</a></li>
+        
+            <li><a href="#credits">Credits</a></li>
+        
+            <li><a href="#other-resources">Other resources</a></li>
         
     
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
 
-<h1 id="welcome-to-mkdocs">Welcome to MkDocs</h1>
-<p>For full documentation visit <a href="http://mkdocs.org">mkdocs.org</a>.</p>
-<h2 id="commands">Commands</h2>
+<h1 id="django-greeking">django-greeking</h1>
+<p>Django template tools for printing filler, a technique from the days of hot type known as greeking.</p>
+<h2 id="features">Features</h2>
+<p>Currently, seven template tags are bundled into greeking. They can:</p>
 <ul>
-<li><code>mkdocs new [dir-name]</code> - Create a new project.</li>
-<li><code>mkdocs serve</code> - Start the live-reloading docs server.</li>
-<li><code>mkdocs build</code> - Build the documentation site.</li>
-<li><code>mkdocs help</code> - Print this help message.</li>
+<li>Generate the lorem ipsum text already available in <a href="http://docs.djangoproject.com/en/dev/ref/contrib/webdesign/#ref-contrib-webdesign">django.contrib.webdesign</a>.</li>
+<li>Generate filler images from <a href="http://lorempixum.com">lorempixum.com</a>, <a href="http://www.fillmurray.com/">Fill Murray</a>, <a href="http://placehold.it">placehold.it</a> and <a href="http://www.placekitten.com">placekitten.com</a>.</li>
+<li>Print snippets from Lewis Carroll's poem <a href="http://en.wikipedia.org/wiki/Jabberwocky">Jabberwocky</a>.</li>
+<li>Print pangrams in a variety of languages. A pangram is a phrase that includes every letter of an alphabet.</li>
+<li>Import an object_list of filler comments for use in greeking <a href="http://docs.djangoproject.com/en/dev/ref/contrib/comments/">Django's 'contrib' comments app</a>.</li>
 </ul>
-<h2 id="project-layout">Project layout</h2>
-<pre><code>mkdocs.yml    # The configuration file.
-docs/
-    index.md  # The documentation homepage.
-    ...       # Other markdown pages, images and other files.
+<h2 id="installation">Installation</h2>
+<pre><code class="bash">pip install greeking
 </code></pre>
+
+<h2 id="getting-started">Getting started</h2>
+<p>Before you can use any of the template tags, you have to add the app to the
+<code>INSTALLED_APPS</code> your settings.py file, like so:</p>
+<pre><code class="python">    'greeking',
+</code></pre>
+
+<p>And then import the library into your template.</p>
+<pre><code class="html+django">{% load greeking_tags %}
+</code></pre>
+
+<p>Then you just need to call out the tag you want to use.</p>
+<p>Like Jabberywocky...</p>
+<pre><code class="html+django">{% jabberwocky 3 %}
+</code></pre>
+
+<p>...pangrams...</p>
+<pre><code class="html+django">{% pangram fr %}
+</code></pre>
+
+<p>...placeholder images...</p>
+<pre><code class="html+django">{% lorem_pixum 250 400 %}
+</code></pre>
+
+<pre><code class="html+django">{% placeholdit 250 400 text='Hello' %}
+</code></pre>
+
+<p>...placekitten images...</p>
+<pre><code class="html+django">{% placekitten 200 200 %}
+</code></pre>
+
+<p>...Bill Murray images...</p>
+<pre><code class="html+django">{% fillmurray 200 200 %}
+</code></pre>
+
+<p>...or comments.</p>
+<pre><code class="html+django">{% greek_comment_list as comment_list %}
+{% for comment in comment_list %}
+    &lt;div id=&quot;c{{ comment.id }}&quot;&gt;
+            &lt;p&gt;{{ comment.comment }}&lt;/p&gt;
+            &lt;p&gt;{{ comment.user_name }}&lt;/p&gt;
+            &lt;p&gt;{{ comment.submit_date|date:&quot;F j, Y&quot; }}&lt;/p&gt;
+            &lt;p&gt;&lt;a href=&quot;mailto:{{ comment.user_email }}&quot;&gt;{{ comment.user_email }}&lt;/a&gt;&lt;/p&gt;
+            &lt;p&gt;&lt;a href=&quot;{{ comment.user_url }}&quot;&gt;{{ comment.user_url }}&lt;/a&gt;&lt;/p&gt;
+    &lt;/div&gt;
+{% endfor %}
+</code></pre>
+
+<h2 id="credits">Credits</h2>
+<ul>
+<li>Pangrams are drawn from <a href="http://www.cl.cam.ac.uk/~mgk25/ucs/examples/quickbrown.txt">Markus Kuhn</a>.</li>
+<li>Comments drawn from the work of giants of our time.</li>
+</ul>
+<h2 id="other-resources">Other resources</h2>
+<ul>
+<li>Repo: <a href="https://github.com/palewire/django-greeking">https://github.com/palewire/django-greeking</a></li>
+<li>Issues: <a href="https://github.com/palewire/django-greeking/issues">https://github.com/palewire/django-greeking/issues</a></li>
+<li>Packaging: <a href="https://pypi.python.org/pypi/greeking">https://pypi.python.org/pypi/greeking</a></li>
+<li>Testing: <a href="https://travis-ci.org/palewire/django-greeking">https://travis-ci.org/palewire/django-greeking</a></li>
+<li>Coverage: <a href="https://coveralls.io/r/palewire/django-greeking">https://coveralls.io/r/palewire/django-greeking</a></li>
+</ul>
 </div>
             
         </div>

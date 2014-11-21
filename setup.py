@@ -45,7 +45,7 @@ setup(
     author_email='ben.welsh@gmail.com',
     url='http://github.com/palewire/django-greeking',
     download_url='http://github.com/palewire/django-greeking.git',
-    packages='greeking',
+    packages=('greeking',),
     license='MIT',
     keywords='greeking pangrams lorem ipsum quotables comments \
     text jabberwocky placekittens fillmurray filler',

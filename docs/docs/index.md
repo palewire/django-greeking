@@ -91,6 +91,7 @@ Like Jabberywocky...
 
 ## Other resources
 
+* Repo: [https://github.com/palewire/django-greeking](https://github.com/palewire/django-greeking)
 * Issues: [https://github.com/palewire/django-greeking/issues](https://github.com/palewire/django-greeking/issues)
 * Packaging: [https://pypi.python.org/pypi/greeking](https://pypi.python.org/pypi/greeking)
 * Testing: [https://travis-ci.org/palewire/django-greeking](https://travis-ci.org/palewire/django-greeking)

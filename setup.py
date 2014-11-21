@@ -38,7 +38,7 @@ class TestCommand(Command):
 
 setup(
     name='greeking',
-    version='1.1.0',
+    version='1.1.1',
     description='Django template tools for printing filler, a \
     technique from the days of hot type known as greeking.',
     author='Ben Welsh',
@@ -54,10 +54,13 @@ setup(
         "Intended Audience :: Science/Research",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
-        "Programming Language :: Python",
         'Programming Language :: Python',
         'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.2',
+        'Programming Language :: Python :: 3.3',
+        'Programming Language :: Python :: 3.4',
         "Topic :: Software Development :: Libraries :: Python Modules",
     ],
     install_requires=('six>=1.5.2',),

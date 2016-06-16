@@ -28,6 +28,14 @@ class TestCommand(Command):
                 'django.contrib.staticfiles',
                 'greeking',
             ),
+            TEMPLATES=[
+                {
+                    'BACKEND': 'django.template.backends.django.DjangoTemplates',
+                    'DIRS': [],
+                    'APP_DIRS': False,
+                    'OPTIONS': {},
+                },
+            ]
         )
         from django.core.management import call_command
         import django

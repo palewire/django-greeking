@@ -3,7 +3,6 @@ python:
   - "2.7"
   - "3.5"
 env:
-  - DJANGO_VERSION=1.8.13
   - DJANGO_VERSION=1.9.7
   - DJANGO_VERSION=1.10a1
 # command to install requirements

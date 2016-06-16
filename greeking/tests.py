@@ -35,18 +35,17 @@ class GreekingTemplateTagTests(TestCase):
         from greeking.pangrams import PANGRAMS
         languages = list(PANGRAMS.keys())
         for language in languages:
-            t = "{% load greeking_tags %}{% pangram " + language + " %}"
-            print t
+            t = "{% load greeking_tags %}{% pangram '" + language + "' %}"
             self.render(t)
         self.assertRaises(
             TemplateSyntaxError,
             self.render,
-            "{% load greeking_tags %}{% pangram language=foobar %}"
+            "{% load greeking_tags %}{% pangram foobar %}"
         )
         self.assertRaises(
             TemplateSyntaxError,
             self.render,
-            "{% load greeking_tags %}{% pangram language=en foobar %}"
+            "{% load greeking_tags %}{% pangram en foobar %}"
         )
         self.render("{% load greeking_tags %}{% pangram %}")
 

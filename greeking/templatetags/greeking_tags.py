@@ -107,13 +107,8 @@ def placekitten(width, height):
     return format_html('<img src="{}"/>', url)
 
 
-class CommentListNode(template.Node):
-    def render(self, context):
-        context['comment_list'] = quotables.get_comment_list()
-        return ''
-
-
-def greek_comment_list(parser, token):
+@register.simple_tag
+def greek_comment_list():
     """
     Allows a template-level call of filler comments.
 
@@ -133,8 +128,7 @@ def greek_comment_list(parser, token):
         </div>
     {% endfor %}
     """
-    return CommentListNode()
-greek_comment_list = register.tag(greek_comment_list)
+    return quotables.get_comment_list()
 
 
 class LoremNode(template.Node):
@@ -203,17 +197,8 @@ def lorem(parser, token):
 lorem = register.tag(lorem)
 
 
-class PangramNode(template.Node):
-    def __init__(self, language):
-        self.language = language
-
-    def render(self, context):
-
-        return
-
-
 @register.simple_tag
-def pangram(**kwargs):
+def pangram(language='en'):
     """
     Prints a pangram in the specified language.
 
@@ -230,31 +215,19 @@ def pangram(**kwargs):
 
     Examples:
         * ``{% pangram %}`` will output the default English pangram.
-        * ``{% pangram language=fr %}`` will output a French pangram.
+        * ``{% pangram 'fr' %}`` will output a French pangram.
     """
-    print language
     try:
         pangram = get_pangram(language)
     except KeyError:
         raise template.TemplateSyntaxError(
             "Could not find a pangram for %r abbreviation" % language
         )
-    return get_html(pangram)
+    return get_pangram_html(pangram)
 
 
-class JabberwockyNode(template.Node):
-    def __init__(self, count):
-        self.count = count
-
-    def render(self, context):
-        try:
-            count = int(self.count)
-        except (ValueError, TypeError):
-            count = None
-        return get_jabberwocky_html(get_grafs(count))
-
-
-def jabberwocky(parser, token):
+@register.simple_tag
+def jabberwocky(count=7):
     """
     Prints paragraphs from Lewis Caroll's poem Jabberwocky for greeking
     in templates.
@@ -270,16 +243,4 @@ def jabberwocky(parser, token):
         * ``{% jabberwocky %}`` will output the common "lorem ipsum" paragraph
         * ``{% jabberwocky 3 %}`` will output three paragraphs from the poem
     """
-    bits = list(token.split_contents())
-    tagname = bits[0]
-    # Count bit
-    if len(bits) > 1:
-        count = bits[1]
-    else:
-        count = None
-    if len(bits) > 2:
-        raise template.TemplateSyntaxError(
-            "Incorrect format for %r tag" % tagname
-        )
-    return JabberwockyNode(count)
-jabberwocky = register.tag(jabberwocky)
+    return get_jabberwocky_html(get_grafs(count or 7))

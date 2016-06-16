@@ -36,16 +36,17 @@ class GreekingTemplateTagTests(TestCase):
         languages = list(PANGRAMS.keys())
         for language in languages:
             t = "{% load greeking_tags %}{% pangram " + language + " %}"
+            print t
             self.render(t)
         self.assertRaises(
             TemplateSyntaxError,
             self.render,
-            "{% load greeking_tags %}{% pangram foobar %}"
+            "{% load greeking_tags %}{% pangram language=foobar %}"
         )
         self.assertRaises(
             TemplateSyntaxError,
             self.render,
-            "{% load greeking_tags %}{% pangram en foobar %}"
+            "{% load greeking_tags %}{% pangram language=en foobar %}"
         )
         self.render("{% load greeking_tags %}{% pangram %}")
 
@@ -78,21 +79,10 @@ class GreekingTemplateTagTests(TestCase):
             out,
             '<img src="http://www.fillmurray.com/200/200/"/>'
         )
-        t2 = "{% load greeking_tags %}{% fillmurray 200 200 gray %}"
-        ctx, out = self.render(t2)
-        self.assertEqual(
-            out,
-            '<img src="http://www.fillmurray.com/g/200/200/"/>'
-        )
         self.assertRaises(
             TemplateSyntaxError,
             self.render,
             "{% load greeking_tags %}{% fillmurray foobar %}"
-        )
-        self.assertRaises(
-            TemplateSyntaxError,
-            self.render,
-            "{% load greeking_tags %}{% fillmurray 200 200 blue %}"
         )
 
     def testPlaceholdIt(self):
@@ -102,32 +92,32 @@ class GreekingTemplateTagTests(TestCase):
         t1 = "{% load greeking_tags %}{% placeholdit 250 250 %}"
         ctx, out = self.render(t1)
         self.assertEqual(
-            out, '<img src="http://placehold.it/250x250/cccccc/969696/"/>'
+            out, u'<img src="http://placehold.it/250x250/cccccc/969696/"/>'
         )
         t2 = "{% load greeking_tags %}{% placeholdit 100 200 %}"
         ctx, out = self.render(t2)
         self.assertEqual(
-            out, '<img src="http://placehold.it/100x200/cccccc/969696/"/>'
+            out, u'<img src="http://placehold.it/100x200/cccccc/969696/"/>'
         )
         t3 = "{% load greeking_tags %}{% placeholdit 100 200 \
 background_color='fff' text_color='000' %}"
         ctx, out = self.render(t3)
         self.assertEqual(
-            out, '<img src="http://placehold.it/100x200/fff/000/"/>'
+            out, u'<img src="http://placehold.it/100x200/fff/000/"/>'
         )
         t4 = "{% load greeking_tags %}{% placeholdit 100 200 \
 text='Hello LA' %}"
         ctx, out = self.render(t4)
         self.assertEqual(
-            out, '<img src="http://placehold.it/100x200/cccccc/969696/\
-&text=Hello+LA"/>'
+            out, u'<img src="http://placehold.it/100x200/cccccc/969696/\
+?text=Hello+LA"/>'
         )
         t5 = "{% load greeking_tags %}{% placeholdit 100 200 'fff' \
 '000' 'Hello LA' %}"
         ctx, out = self.render(t5)
         self.assertEqual(
             out,
-            '<img src="http://placehold.it/100x200/fff/000/&text=Hello+LA"/>'
+            u'<img src="http://placehold.it/100x200/fff/000/?text=Hello+LA"/>'
         )
         self.assertRaises(
             TemplateSyntaxError,
@@ -146,19 +136,11 @@ text='Hello LA' %}"
         """
         t1 = "{% load greeking_tags %}{% placekitten 200 200 %}"
         ctx, out = self.render(t1)
-        self.assertEqual(out, '<img src="http://placekitten.com/200/200/"/>')
-        t2 = "{% load greeking_tags %}{% placekitten 200 200 gray %}"
-        ctx, out = self.render(t2)
-        self.assertEqual(out, '<img src="http://placekitten.com/g/200/200/"/>')
+        self.assertEqual(out, u'<img src="http://placekitten.com/200/200/"/>')
         self.assertRaises(
             TemplateSyntaxError,
             self.render,
             "{% load greeking_tags %}{% placekitten foobar %}"
-        )
-        self.assertRaises(
-            TemplateSyntaxError,
-            self.render,
-            "{% load greeking_tags %}{% placekitten 200 200 blue %}"
         )
 
     def testLoremIpsum(self):
@@ -205,33 +187,8 @@ text='Hello LA' %}"
             out,
             '<img src="http://lorempixum.com/200/200/"/>'
         )
-        t2 = "{% load greeking_tags %}{% lorem_pixum 200 200 gray %}"
-        ctx, out = self.render(t2)
-        self.assertEqual(
-            out,
-            '<img src="http://lorempixum.com/g/200/200/"/>'
-        )
-        t3 = "{% load greeking_tags %}{% lorem_pixum 250 400 sports %}"
-        ctx, out = self.render(t3)
-        self.assertEqual(
-            out,
-            '<img src="http://lorempixum.com/250/400/sports"/>'
-        )
-        t4 = "{% load greeking_tags %}{% lorem_pixum 250 400 gray sports %}"
-        ctx, out = self.render(t4)
-        self.assertEqual(
-            out,
-            '<img src="http://lorempixum.com/g/250/400/sports"/>'
-        )
-        t5 = "{% load greeking_tags %}{% lorem_pixum 250 400 gray foobar %}"
-        self.assertRaises(ValueError, self.render, [t5])
         self.assertRaises(
             TemplateSyntaxError,
             self.render,
             "{% load greeking_tags %}{% lorem_pixum foobar %}"
-        )
-        self.assertRaises(
-            TemplateSyntaxError,
-            self.render,
-            "{% load greeking_tags %}{% lorem_pixum 250 400 blue sports %}"
         )

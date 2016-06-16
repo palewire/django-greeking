@@ -27,5 +27,5 @@ def get_url(
     url = URL % d
     if text:
         text = text.replace(" ", "+")
-        url = url + "&text=" + text
+        url = url + "?text=" + text
     return url

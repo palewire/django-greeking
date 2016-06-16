@@ -45,14 +45,18 @@ class TestCommand(Command):
 
 setup(
     name='greeking',
-    version='2.0.1',
+    version='2.0.2',
     description='Django template tools for printing filler, a \
     technique from the days of hot type known as greeking.',
     author='Ben Welsh',
     author_email='ben.welsh@gmail.com',
     url='http://github.com/palewire/django-greeking',
     download_url='http://github.com/palewire/django-greeking.git',
-    packages=('greeking',),
+    include_package_data=True,
+    packages=(
+        'greeking',
+        'greeking.templatetags',
+    ),
     license='MIT',
     keywords='greeking pangrams lorem ipsum quotables comments \
     text jabberwocky placekittens fillmurray filler',

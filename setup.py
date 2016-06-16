@@ -45,7 +45,7 @@ class TestCommand(Command):
 
 setup(
     name='greeking',
-    version='2.0.0',
+    version='2.0.1',
     description='Django template tools for printing filler, a \
     technique from the days of hot type known as greeking.',
     author='Ben Welsh',

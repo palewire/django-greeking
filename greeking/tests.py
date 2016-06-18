@@ -191,3 +191,9 @@ text='Hello LA' %}"
             self.render,
             "{% load greeking_tags %}{% lorem_pixum foobar %}"
         )
+
+    def testLatimesIpsum(self):
+        from greeking import latimes_ipsum
+        self.assertTrue(
+            isinstance(latimes_ipsum.get_story(), latimes_ipsum.Story)
+        )

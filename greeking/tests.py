@@ -197,3 +197,7 @@ text='Hello LA' %}"
         self.assertTrue(
             isinstance(latimes_ipsum.get_story(), latimes_ipsum.Story)
         )
+        related_items = latimes_ipsum.get_related_items()
+        self.assertTrue(isinstance(related_items[0], latimes_ipsum.RelatedItem))
+        self.assertTrue(len(related_items) == 4)
+        self.assertTrue(len(latimes_ipsum.get_related_items(1)) == 1)

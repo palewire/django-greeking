@@ -3,6 +3,7 @@
 Create objects from past Los Angeles Times stories for use as boilerplate.
 """
 from datetime import datetime
+from placeholdit import get_url as get_placeholdit_url
 
 
 class Story(object):
@@ -36,6 +37,16 @@ class Story(object):
         self.content = content
 
 
+class RelatedItem(object):
+    """
+    A condensed reference to a story.
+    """
+    def __init__(self, headline, url, image_url):
+        self.headline = headline
+        self.url = url
+        self.image_url = image_url
+
+
 def get_story():
     """
     Returns a boilerplate story as an object.
@@ -48,7 +59,7 @@ def get_story():
         canonical_url="http://articles.latimes.com/print/1993-04-09/business/fi-20973_1_microsoft-access",
         kicker="Computer File",
         description="Compared to Microsoft's other database program, FoxPro 2.5 for Windows is faster and a better choice.",
-        image_url="http://i.imgur.com/mZno8CG.png",
+        image_url=get_placeholdit_url(1600, 900),
         sources="Times research",
         credits="Richard O'Reilly",
         content="""Microsoft's FoxPro 2.5 for Windows is an important upgrade of its predecessor, but you might not believe it at first because it looks a lot like the program it replaces.
@@ -91,3 +102,13 @@ That means FoxPro 2.5 for Windows can be used to develop applications for all of
     )
 
 
+def get_related_items(count=4):
+    """
+    Returns the requested number of related items as a list.
+    """
+    defaults = dict(
+        headline="This is not a headline",
+        url="http://www.example.com",
+        image_url=get_placeholdit_url(400, 400)
+    )
+    return [RelatedItem(**defaults) for x in range(0, count)]

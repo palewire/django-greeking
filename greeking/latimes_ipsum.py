@@ -3,6 +3,7 @@
 Create objects from past Los Angeles Times stories for use as boilerplate.
 """
 from __future__ import absolute_import
+import six
 from . import lorem_ipsum
 from . import placeholdit
 from datetime import datetime
@@ -60,11 +61,11 @@ def get_story():
         pub_date=datetime(2016, 1, 1, 0, 0, 0),
         canonical_url="http://www.example.com/",
         kicker="This is not a kicker",
-        description=lorem_ipsum.COMMON_P,
+        description=lorem_ipsum.COMMON_P.split(".")[0],
         image_url=placeholdit.get_url(1600, 900),
         sources="This is not a source line",
         credits="This is not a credit line",
-        content=lorem_ipsum.paragraphs(6)
+        content=six.text_type('\n\n'.join(lorem_ipsum.paragraphs(6)))
     )
 
 

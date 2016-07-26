@@ -1,3 +1,4 @@
+import six
 from django.test import TestCase
 from django.template import Template, Context, TemplateSyntaxError
 
@@ -194,9 +195,11 @@ text='Hello LA' %}"
 
     def testLatimesIpsum(self):
         from greeking import latimes_ipsum
-        self.assertTrue(
-            isinstance(latimes_ipsum.get_story(), latimes_ipsum.Story)
-        )
+
+        story = latimes_ipsum.get_story()
+        self.assertTrue(isinstance(story, latimes_ipsum.Story))
+        self.assertTrue(isinstance(story.content, six.string_types))
+
         related_items = latimes_ipsum.get_related_items()
         self.assertTrue(isinstance(related_items[0], latimes_ipsum.RelatedItem))
         self.assertTrue(len(related_items) == 4)

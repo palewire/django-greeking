@@ -2,7 +2,19 @@
 """
 Utility for generating placeholder images from http://placehold.it/
 """
+import random
 URL = 'http://placehold.it/%(width)sx%(height)s/%(bcolor)s/%(tcolor)s/'
+
+
+def _get_random_color():
+    """
+    Returns a random color hex value.
+    """
+    return '%02X%02X%02X' % (
+        random.randint(0, 255),
+        random.randint(0, 255),
+        random.randint(0, 255)
+    )
 
 
 def get_url(
@@ -14,16 +26,11 @@ def get_url(
 
     You can customize the background color, text color and text using
     the optional keyword arguments
-    """
 
-    """
-    If you want to use a random color with the placeholdit url; 
+    If you want to use a random color pass in random_background_color as True.
     """
     if random_background_color:
-
-        import random
-        r = lambda: random.randint(0,255)
-        background_color = ('%02X%02X%02X' % (r(),r(),r()))
+        background_color = _get_random_color()
 
     # If height is not provided, presume it is will be a square
     if not height:

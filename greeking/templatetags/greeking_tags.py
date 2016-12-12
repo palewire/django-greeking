@@ -194,6 +194,8 @@ def lorem(parser, token):
             "Incorrect format for %r tag" % tagname
         )
     return LoremNode(count, method, common)
+
+
 lorem = register.tag(lorem)
 
 

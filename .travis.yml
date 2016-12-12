@@ -1,19 +1,22 @@
+sudo: false
+
 language: python
+
 python:
   - "2.7"
   - "3.5"
+
 env:
-  - DJANGO_VERSION=1.9.7
-  - DJANGO_VERSION=1.10a1
-# command to install requirements
+  - DJANGO_VERSION=1.9.12
+  - DJANGO_VERSION=1.10.4
+
 install:
- - pip install -r requirements.txt
- - pip install -q Django==$DJANGO_VERSION
-# command to run tests
+  - pip install -r requirements.txt
+  - pip install -q Django==$DJANGO_VERSION
+
 script:
-  - pep8 greeking
-  - pyflakes greeking
+  - flake8 greeking
   - coverage run setup.py test
-# Report coverage results to coveralls.io
+
 after_success:
- - coveralls
+  - coveralls

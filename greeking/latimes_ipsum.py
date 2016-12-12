@@ -11,7 +11,7 @@ from datetime import datetime
 
 class Story(object):
     """
-    A boilerplate story
+    A boilerplate story.
     """
     def __init__(
         self,
@@ -24,7 +24,8 @@ class Story(object):
         description,
         sources,
         credits,
-        content
+        content,
+        image,
     ):
         self.slug = slug
         self.headline = headline
@@ -36,6 +37,7 @@ class Story(object):
         self.sources = sources
         self.credits = credits
         self.content = content
+        self.image = image
 
 
 class RelatedItem(object):
@@ -75,13 +77,14 @@ def get_story():
         slug="la-data-latimes-ipsum",
         headline="This is not a headline",
         byline="This is not a byline",
-        pub_date=datetime(2016, 1, 1, 0, 0, 0),
+        pub_date=datetime.now(),
         canonical_url="http://www.example.com/",
         kicker="This is not a kicker",
         description=lorem_ipsum.COMMON_P.split(".")[0],
         sources="This is not a source",
         credits="This is not a credit",
-        content=six.text_type('\n\n'.join(lorem_ipsum.paragraphs(6)))
+        content=six.text_type('\n\n'.join(lorem_ipsum.paragraphs(6))),
+        image=get_image(900)
     )
 
 
@@ -101,7 +104,6 @@ def get_image(width, height=None, random_background_color=False):
     """
     Returns image with caption, credit, and random background color as requested.
     """
-
     return Image(
         url=placeholdit.get_url(width, height=height, random_background_color=random_background_color),
         credit="This is not an image credit",
@@ -113,7 +115,6 @@ def get_quote():
     """
     Returns quote and its source.
     """
-
     return Quote(
         quote="This is not a pull quote",
         source="This is not a quote source"

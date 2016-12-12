@@ -212,7 +212,7 @@ text='Hello LA' %}"
         self.assertTrue(len(related_items) == 4)
         self.assertTrue(len(latimes_ipsum.get_related_items(1)) == 1)
 
-        image = latimes_ipsum.get_image(250)
+        latimes_ipsum.get_image(250)
         t1 = latimes_ipsum.get_image(250, 250, True)
         ctx, out = self.render(t1)
         self.assertTrue(

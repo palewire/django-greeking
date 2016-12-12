@@ -4,7 +4,7 @@ Django template tools for printing filler, a technique from the days of hot type
 
 ## Features
 
-Greeking ca:
+Greeking can:
 
 * Generate filler images from [lorempixum.com](http://lorempixum.com), [Fill Murray](http://www.fillmurray.com/), [placehold.it](http://placehold.it) and [placekitten.com](http://www.placekitten.com).
 * Print pangrams in a variety of languages. A pangram is a phrase that includes every letter of an alphabet.

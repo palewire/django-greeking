@@ -2,6 +2,7 @@
 
 Django template tools for printing filler, a technique from the days of hot type known as greeking.
 
+
 ## Features
 
 Greeking can:
@@ -12,11 +13,13 @@ Greeking can:
 * Print snippets from Lewis Carroll's poem [Jabberwocky](http://en.wikipedia.org/wiki/Jabberwocky).
 * Import an object_list of filler comments for use in greeking [Django's 'contrib' comments app](http://docs.djangoproject.com/en/dev/ref/contrib/comments/).
 
+
 ## Installation
 
 ```bash
 pip install greeking
 ```
+
 
 ## Getting started
 
@@ -103,6 +106,7 @@ def latimes_ipsum(request):
 
 * Pangrams are drawn from [Markus Kuhn](http://www.cl.cam.ac.uk/~mgk25/ucs/examples/quickbrown.txt).
 * Comments drawn from the work of giants of our time.
+
 
 ## Other resources
 

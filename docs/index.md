@@ -6,7 +6,6 @@ Django template tools for printing filler, a technique from the days of hot type
 
 Currently, seven template tags are bundled into greeking. They can:
 
-* Generate lorem ipsum text.
 * Generate latimes ipsum text, boilerplate LA Times story text
 * Generate filler images from [lorempixum.com](http://lorempixum.com), [Fill Murray](http://www.fillmurray.com/), [placehold.it](http://placehold.it) and [placekitten.com](http://www.placekitten.com).
 * Print snippets from Lewis Carroll's poem [Jabberwocky](http://en.wikipedia.org/wiki/Jabberwocky).

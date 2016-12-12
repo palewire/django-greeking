@@ -4,9 +4,9 @@ Create objects from past Los Angeles Times stories for use as boilerplate.
 """
 from __future__ import absolute_import
 import six
-from . import lorem_ipsum
 from . import placeholdit
 from datetime import datetime
+from django.utils import lorem_ipsum
 
 
 class Story(object):

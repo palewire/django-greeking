@@ -7,7 +7,7 @@ Django template tools for printing filler, a technique from the days of hot type
 
 Greeking can:
 
-* Generate filler images from [lorempixum.com](http://lorempixum.com), [Fill Murray](http://www.fillmurray.com/), [placehold.it](http://placehold.it) and [placekitten.com](http://www.placekitten.com).
+* Generate filler images from [placehold.it](http://placehold.it), [placekitten.com](http://www.placekitten.com) and [Fill Murray](http://www.fillmurray.com/).
 * Print pangrams in a variety of languages. A pangram is a phrase that includes every letter of an alphabet.
 * Create ``Story``, ``Image``, ``RelatedItem`` and ``Quote`` objects with boilerplate text, URLs and a set of the attributes common to news.
 * Print snippets from Lewis Carroll's poem [Jabberwocky](http://en.wikipedia.org/wiki/Jabberwocky).

@@ -150,22 +150,6 @@ text='Hello LA' %}"
             "{% load greeking_tags %}{% placekitten foobar %}"
         )
 
-    def testLoremPixum(self):
-        """
-        Tests the tag for pulling lorem pixum images.
-        """
-        t1 = "{% load greeking_tags %}{% lorem_pixum 200 200 %}"
-        ctx, out = self.render(t1)
-        self.assertEqual(
-            out,
-            '<img src="http://lorempixum.com/200/200/"/>'
-        )
-        self.assertRaises(
-            TemplateSyntaxError,
-            self.render,
-            "{% load greeking_tags %}{% lorem_pixum foobar %}"
-        )
-
     def testLatimesIpsum(self):
         from greeking import latimes_ipsum
 

@@ -1,6 +1,9 @@
 # Requirements
 six>=1.5.2
 
+# Documentation
+mkdocs
+
 # Testing
 flake8
 python-coveralls

@@ -38,54 +38,109 @@ And then import the library into your template.
 
 Then you just need to call out the tag you want to use.
 
-...Like placeholder images...
+
+## Placeholder images
+
+All placeholder providers expect a width and height to be provided.
+
+One provider we have a templatetag for is [placehold.it](https://placehold.it/).
 
 ```html+django
-{% lorem_pixum 250 400 %}
+{% placeholdit 400 250 %}
 ```
 
-```html+django
-{% placeholdit 250 400 text='Hello' %}
-```
+<img src="https://placeholdit.imgix.net/~text?txtsize=38&txt=400%C3%97250&w=400&h=250">
 
-...placekitten images...
+Another is [placekitten.com](https://placekitten.com/)
 
 ```html+django
 {% placekitten 200 200 %}
 ```
 
-...Bill Murray images...
+<img src="https://placekitten.com/200/200">
+
+
+Another is fillmurray.com
 
 ```html+django
-{% fillmurray 200 200 %}
+{% fillmurray 600 200 %}
 ```
 
-...pangrams...
+<img src="http://www.fillmurray.com/600/200">
+
+### Customizing images
+
+The placeholdit tag allows for the text over the image to be customized, as well as the text and background colors.
 
 ```html+django
-{% pangram 'fr' %}
+{% placeholdit 400 250 text='Hello' %}
 ```
 
-...Jabberywocky...
+<img src="https://placeholdit.imgix.net/~text?txtsize=38&txt=Hello&w=400&h=250&txttrack=0">
 
 ```html+django
-{% jabberwocky 3 %}
+{% placeholdit 400 250 background_color='fff' text_color='000' %}
 ```
 
-...or comments.
+<img src="https://placeholdit.imgix.net/~text?txtsize=38&bg=ffffff&txtclr=000000&txt=400%C3%97250&w=400&h=250">
+
+## Pangrams
+
+A pangram is a phrase that includes every letter of an alphabet. It is useful when testing font implementations.
+
+By default, an English pangram is returned.
 
 ```html+django
-{% greek_comment_list as comment_list %}
-{% for comment in comment_list %}
-    <div id="c{{ comment.id }}">
-            <p>{{ comment.comment }}</p>
-            <p>{{ comment.user_name }}</p>
-            <p>{{ comment.submit_date|date:"F j, Y" }}</p>
-            <p><a href="mailto:{{ comment.user_email }}">{{ comment.user_email }}</a></p>
-            <p><a href="{{ comment.user_url }}">{{ comment.user_url }}</a></p>
-    </div>
-{% endfor %}
+{% pangram %}
 ```
+
+> The quick brown fox jumps over the lazy dog.
+
+A set of other language are available, including Japanese, Spanish, French and German. They can be called by providing
+the language code like so:
+
+```html+django
+{% pangram 'de' %}
+```
+
+> Falsches Üben von Xylophonmusik quält jeden größeren Zwerg.
+
+
+## Los Angeles Times ipsum
+
+A set of objects with boilerplate text, URLs and a set of the attributes common to news.
+
+The library can generate ``Story``, ``Image``, ``RelatedItem`` and ``Quote`` objects.
+
+They should be assigned to variables in the template and then printed out as needed.
+
+### Story objects
+
+```html+django
+{% latimes_story as obj %}
+
+<h1>{{ obj.headline }}</h1>
+<div>
+    {{ obj.byline }}
+</div>
+```
+
+Which would print out as:
+
+```html
+<h1>This is not a headline</h1>
+<div>This is not a byline</div>
+```
+
+### Image objects
+
+
+### Quote objects
+
+
+### Related item lists
+
+
 
 To use latimes_ipsum, include the latimes_ipsum objects like so:
 
@@ -100,6 +155,51 @@ def latimes_ipsum(request):
     latimes_ipsum.get_related_items(4)
     latimes_ipsum.get_image(250)
 
+```
+
+
+## Jabberwocky
+
+<img height=300 style="float:right; margin-left: 15px;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Jabberwocky.jpg/800px-Jabberwocky.jpg">
+
+["Jabberywocky"](https://en.wikipedia.org/wiki/Jabberwocky) is a 1871 poem by Lewis Carroll, the author of "Alice in Wonderland." Selections can be printed by using the tag below.
+The number of paragraphs can be optionally provided to limit its length. The poem has seven paragraphs in total.
+
+```html+django
+{% jabberwocky 3 %}
+```
+
+> 'Twas brillig, and the slithy toves
+Did gyre and gimble in the wabe;
+All mimsy were the borogoves,
+And the mome raths outgrabe.
+
+> "Beware the Jabberwock, my son!
+The jaws that bite, the claws that catch!
+Beware the Jubjub bird, and shun
+The frumious Bandersnatch!"
+
+> He took his vorpal sword in hand:
+Long time the manxome foe he sought-
+So rested he by the Tumtum tree,
+And stood awhile in thought.
+
+
+## Comments
+
+An object_list of filler comments for use in greeking content for Django's [popular comments application](https://github.com/django/django-contrib-comments).
+
+```html+django
+{% greek_comment_list as comment_list %}
+{% for comment in comment_list %}
+    <div id="c{{ comment.id }}">
+            <p>{{ comment.comment }}</p>
+            <p>{{ comment.user_name }}</p>
+            <p>{{ comment.submit_date|date:"F j, Y" }}</p>
+            <p><a href="mailto:{{ comment.user_email }}">{{ comment.user_email }}</a></p>
+            <p><a href="{{ comment.user_url }}">{{ comment.user_url }}</a></p>
+    </div>
+{% endfor %}
 ```
 
 ## Credits

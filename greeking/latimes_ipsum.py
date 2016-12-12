@@ -22,7 +22,6 @@ class Story(object):
         canonical_url,
         kicker,
         description,
-        image_url,
         sources,
         credits,
         content
@@ -34,7 +33,6 @@ class Story(object):
         self.canonical_url = canonical_url
         self.kicker = kicker
         self.description = description
-        self.image_url = image_url
         self.sources = sources
         self.credits = credits
         self.content = content
@@ -50,6 +48,25 @@ class RelatedItem(object):
         self.image_url = image_url
 
 
+class Image(object):
+    """
+    An image.
+    """
+    def __init__(self, url, credit, caption):
+        self.url = url
+        self.credit = credit
+        self.caption = caption
+
+
+class Quote(object):
+    """
+    A quote.
+    """
+    def __init__(self, quote, source):
+        self.quote = quote
+        self.source = source
+
+
 def get_story():
     """
     Returns a boilerplate story as an object.
@@ -62,9 +79,8 @@ def get_story():
         canonical_url="http://www.example.com/",
         kicker="This is not a kicker",
         description=lorem_ipsum.COMMON_P.split(".")[0],
-        image_url=placeholdit.get_url(1600, 900),
-        sources="This is not a source line",
-        credits="This is not a credit line",
+        sources="This is not a source",
+        credits="This is not a credit",
         content=six.text_type('\n\n'.join(lorem_ipsum.paragraphs(6)))
     )
 
@@ -79,3 +95,26 @@ def get_related_items(count=4):
         image_url=placeholdit.get_url(400, 400)
     )
     return [RelatedItem(**defaults) for x in range(0, count)]
+
+
+def get_image(width, height=None, random_background_color=False):
+    """
+    Returns image with caption, credit, and random background color as requested.
+    """
+
+    return Image(
+        url=placeholdit.get_url(width, height=height, random_background_color=random_background_color),
+        credit="This is not an image credit",
+        caption="This is not a caption"
+    )
+
+
+def get_quote():
+    """
+    Returns quote and its source.
+    """
+
+    return Quote(
+        quote="This is not a pull quote",
+        source="This is not a quote source"
+    )

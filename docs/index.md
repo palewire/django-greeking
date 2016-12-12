@@ -6,7 +6,8 @@ Django template tools for printing filler, a technique from the days of hot type
 
 Currently, seven template tags are bundled into greeking. They can:
 
-* Generate the lorem ipsum text already available in [django.contrib.webdesign](http://docs.djangoproject.com/en/dev/ref/contrib/webdesign/#ref-contrib-webdesign).
+* Generate lorem ipsum text.
+* Generate latimes ipsum text, boilerplate LA Times story text
 * Generate filler images from [lorempixum.com](http://lorempixum.com), [Fill Murray](http://www.fillmurray.com/), [placehold.it](http://placehold.it) and [placekitten.com](http://www.placekitten.com).
 * Print snippets from Lewis Carroll's poem [Jabberwocky](http://en.wikipedia.org/wiki/Jabberwocky).
 * Print pangrams in a variety of languages. A pangram is a phrase that includes every letter of an alphabet.
@@ -83,6 +84,23 @@ Like Jabberywocky...
     </div>
 {% endfor %}
 ```
+
+To use latimes_ipsum, include the latimes_ipsum objects like so:
+
+```html+django
+def latimes_ipsum(request):
+    """
+    A context processor to include lorem ipsum objects from the
+    Los Angeles Times.
+    """
+    from greeking import latimes_ipsum
+    latimes_ipsum.get_story()
+    latimes_ipsum.get_related_items(4)
+    latimes_ipsum.get_image(250)
+
+```
+
+
 
 ## Credits
 

@@ -129,6 +129,13 @@ text='Hello LA' %}"
             self.render,
             "{% load greeking_tags %}{% placeholdit 200 200 b a b c d e%}"
         )
+        from greeking import placeholdit
+        url = placeholdit.get_url(250, random_background_color=True)
+        t6 = url
+        ctx, out = self.render(t6)
+        self.assertNotEqual(
+            out, u'<img src="http://placehold.it/250x250/cccccc/969696/"/>'
+        )
 
     def testPlaceKittens(self):
         """
@@ -204,3 +211,18 @@ text='Hello LA' %}"
         self.assertTrue(isinstance(related_items[0], latimes_ipsum.RelatedItem))
         self.assertTrue(len(related_items) == 4)
         self.assertTrue(len(latimes_ipsum.get_related_items(1)) == 1)
+
+        image = latimes_ipsum.get_image(250)
+        t1 = latimes_ipsum.get_image(250, 250, True)
+        ctx, out = self.render(t1)
+        self.assertTrue(
+            t1.url != 'http://placehold.it/250x250/cccccc/969696/'
+        )
+        t2 = latimes_ipsum.get_image(250)
+        ctx, out = self.render(t2)
+        self.assertTrue(
+            t2.url == 'http://placehold.it/250x250/cccccc/969696/'
+        )
+
+        quote = latimes_ipsum.get_quote()
+        self.assertTrue(isinstance(quote, latimes_ipsum.Quote))

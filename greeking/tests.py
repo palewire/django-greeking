@@ -150,40 +150,6 @@ text='Hello LA' %}"
             "{% load greeking_tags %}{% placekitten foobar %}"
         )
 
-    def testLoremIpsum(self):
-        """
-        Tests the tag for pulling lorem ipsum
-        """
-        t1 = "{% load greeking_tags %}{% lorem %}"
-        ctx, out = self.render(t1)
-        self.assertEqual(
-            out,
-            'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do\
- eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim\
- veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea\
- commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit\
- esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat\
- cupidatat non proident, sunt in culpa qui officia deserunt mollit anim\
- id est laborum.'
-        )
-        t2 = "{% load greeking_tags %}{% lorem 3 p %}"
-        self.render(t2)
-        t3 = "{% load greeking_tags %}{% lorem 3 w %}"
-        self.render(t3)
-        t4 = "{% load greeking_tags %}{% lorem 3 b %}"
-        self.render(t4)
-        t5 = "{% load greeking_tags %}{% lorem 3 p random %}"
-        self.render(t5)
-        t6 = "{% load greeking_tags %}{% lorem 3 w random %}"
-        self.render(t6)
-        t7 = "{% load greeking_tags %}{% lorem a p %}"
-        self.render(t7)
-        self.assertRaises(
-            TemplateSyntaxError,
-            self.render,
-            "{% load greeking_tags %}{% lorem 1 p random foobar %}"
-        )
-
     def testLoremPixum(self):
         """
         Tests the tag for pulling lorem pixum images.

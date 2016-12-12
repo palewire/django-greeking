@@ -4,12 +4,12 @@ Django template tools for printing filler, a technique from the days of hot type
 
 ## Features
 
-Currently, seven template tags are bundled into greeking. They can:
+Greeking ca:
 
-* Generate latimes ipsum text, boilerplate LA Times story text
 * Generate filler images from [lorempixum.com](http://lorempixum.com), [Fill Murray](http://www.fillmurray.com/), [placehold.it](http://placehold.it) and [placekitten.com](http://www.placekitten.com).
-* Print snippets from Lewis Carroll's poem [Jabberwocky](http://en.wikipedia.org/wiki/Jabberwocky).
 * Print pangrams in a variety of languages. A pangram is a phrase that includes every letter of an alphabet.
+* Create ``Story``, ``Image``, ``RelatedItem`` and ``Quote`` objects with boilerplate text, URLs and a set of the attributes common to news.
+* Print snippets from Lewis Carroll's poem [Jabberwocky](http://en.wikipedia.org/wiki/Jabberwocky).
 * Import an object_list of filler comments for use in greeking [Django's 'contrib' comments app](http://docs.djangoproject.com/en/dev/ref/contrib/comments/).
 
 ## Installation
@@ -35,19 +35,7 @@ And then import the library into your template.
 
 Then you just need to call out the tag you want to use.
 
-Like Jabberywocky...
-
-```html+django
-{% jabberwocky 3 %}
-```
-
-...pangrams...
-
-```html+django
-{% pangram 'fr' %}
-```
-
-...placeholder images...
+...Like placeholder images...
 
 ```html+django
 {% lorem_pixum 250 400 %}
@@ -67,6 +55,18 @@ Like Jabberywocky...
 
 ```html+django
 {% fillmurray 200 200 %}
+```
+
+...pangrams...
+
+```html+django
+{% pangram 'fr' %}
+```
+
+...Jabberywocky...
+
+```html+django
+{% jabberwocky 3 %}
 ```
 
 ...or comments.
@@ -98,8 +98,6 @@ def latimes_ipsum(request):
     latimes_ipsum.get_image(250)
 
 ```
-
-
 
 ## Credits
 

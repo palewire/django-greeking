@@ -69,7 +69,6 @@ class GreekingTemplateTagTests(TestCase):
             for k, v in list(comment_dict.items()):
                 self.assertEqual(v, match[k])
 
-
     def testFillMuray(self):
         """
         Tests the tag for pulling Bill Murray images.

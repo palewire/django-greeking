@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import six
 from django import template
 from greeking import quotables
 from django.utils.html import format_html
@@ -85,7 +84,7 @@ def latimes_related_items(count=4):
                 </a>
         </div>
     {% endfor %}
-    
+
     """
     return get_related_items(count)
 

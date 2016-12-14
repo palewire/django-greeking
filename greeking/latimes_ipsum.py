@@ -105,7 +105,10 @@ def get_image(width, height=None, background_color="cccccc", random_background_c
     Returns image with caption, credit, and random background color as requested.
     """
     return Image(
-        url=placeholdit.get_url(width, height=height, background_color=background_color, random_background_color=random_background_color),
+        url=placeholdit.get_url(width,
+                                height=height,
+                                background_color=background_color,
+                                random_background_color=random_background_color),
         credit="This is not an image credit",
         caption="This is not a caption"
     )

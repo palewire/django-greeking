@@ -295,6 +295,16 @@ An object_list of filler comments for use in greeking content for Django's [popu
 {% endfor %}
 ```
 
+## Changelog
+
+### v2.2.0 (Dec. 2016)
+
+* Added ``latimes_ipsum`` library and documentation
+* Removed the ``{% lorem %}`` tag since it is now packaged with the Django
+* Removed broken image service lorem pixum
+* Increased documentation of all libraries
+* Added Turkish pangram
+
 ## Credits
 
 * Pangrams are drawn from [Markus Kuhn](http://www.cl.cam.ac.uk/~mgk25/ucs/examples/quickbrown.txt).

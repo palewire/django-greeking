@@ -1,17 +1,92 @@
 # -*- coding: utf-8 -*-
-import six
 from django import template
 from greeking import quotables
 from django.utils.html import format_html
-from greeking.lorem_ipsum import words, paragraphs
 from greeking.fillmurray import get_url as get_fillmurray_url
-from greeking.lorem_pixum import get_url as get_lorem_pixum_url
 from greeking.placeholdit import get_url as get_placeholdit_url
 from greeking.placekittens import get_url as get_placekitten_url
 from greeking.pangrams import get_pangram, get_html as get_pangram_html
 from greeking.jabberwocky import get_grafs, get_html as get_jabberwocky_html
-
+from greeking.latimes_ipsum import get_story, get_related_items, get_image, get_quote
 register = template.Library()
+
+
+@register.simple_tag
+def latimes_story():
+    """
+    Return an latimes_ipsum Story object, which has many possible variables,
+    including slug, headline, byline, pub_date, canonical_url, kicker, description,
+    sources, credits, and image (which are used for header images and has a default size of 900).
+
+    Example:
+
+        {% latimes_story as obj %}
+            {{ obj.headline }}
+            {{ obj.byline }}
+            {{ obj.caption }}
+
+    """
+    return get_story()
+
+
+@register.simple_tag
+def latimes_image(width, height, background_color):
+    """
+    Return an latimes_ipsum Image object with a default background color of #ccc unless you specify
+    a background color. Also has option to return caption and credit.
+
+    Usage format:
+
+        {% latimes_image [width] [height] [background_color] as obj %}
+
+    Example usage:
+
+        Image at 250 wide and 400 high with background color of #000
+        {% latimes_image 250 400 000000 %}
+        <img src="{{obj.url}}">
+        {{ obj.caption }}
+        {{ obj.credit }}
+
+    """
+    return get_image(width, height, background_color)
+
+
+@register.simple_tag
+def latimes_quote():
+    """
+    Return an latimes_ipsum Quote object.
+
+    Example:
+
+        {% latimes_quote as obj %}
+            {{ obj.quote }}
+            {{ obj.source }}
+
+    """
+    return get_quote()
+
+
+@register.simple_tag
+def latimes_related_items(count=4):
+    """
+    Return a list of latimes_ipsum Quote object.
+
+    Example usage:
+
+    {% latimes_related_items as related_items %}
+    {% for item in related_items %}
+        <div>
+                <a href="{{ item.url }}">
+                   <p>{{ item.headline }}</p>
+                </a>
+                <a href="{{ item.url }}">
+                   <img src="{{ item.image_url }}">
+                </a>
+        </div>
+    {% endfor %}
+
+    """
+    return get_related_items(count)
 
 
 @register.simple_tag
@@ -33,30 +108,13 @@ def fillmurray(width, height):
 
 
 @register.simple_tag
-def lorem_pixum(width, height):
-    """
-    Creates a placeholder image at the provided width and height.
-
-    Usage format:
-
-        {% lorem_pixum [width] [height] %}
-
-    Example usage:
-
-        Color image at 250 wide and 400 high
-        {% lorem_pixum 250 400 %}
-    """
-    url = get_lorem_pixum_url(width, height)
-    return format_html('<img src="{}"/>', url)
-
-
-@register.simple_tag
 def placeholdit(
     width,
     height,
     background_color="cccccc",
     text_color="969696",
-    text=None
+    text=None,
+    random_background_color=False
 ):
     """
     Creates a placeholder image using placehold.it
@@ -68,7 +126,7 @@ def placeholdit(
     Example usage:
 
         Default image at 250 square
-        {% placeholdit 250 250 %}
+        {% placeholdit 250 %}
 
         100 wide and 200 high
         {% placeholdit 100 200 %}
@@ -129,72 +187,6 @@ def greek_comment_list():
     {% endfor %}
     """
     return quotables.get_comment_list()
-
-
-class LoremNode(template.Node):
-    def __init__(self, count, method, common):
-        self.count, self.method, self.common = count, method, common
-
-    def render(self, context):
-        try:
-            count = int(self.count.resolve(context))
-        except (ValueError, TypeError):
-            count = 1
-        if self.method == 'w':
-            return words(count, common=self.common)
-        else:
-            paras = paragraphs(count, common=self.common)
-        if self.method == 'p':
-            paras = ['<p>%s</p>' % p for p in paras]
-        return six.text_type('\n\n'.join(paras))
-
-
-def lorem(parser, token):
-    """
-    Creates random Latin text useful for providing test data in templates.
-
-    Usage format::
-
-        {% lorem [count] [method] [random] %}
-
-    ``count`` is a number (or variable) containing the number of paragraphs or
-    words to generate (default is 1).
-
-    ``method`` is either ``w`` for words, ``p`` for HTML paragraphs, ``b`` for
-    plain-text paragraph blocks (default is ``b``).
-
-    ``random`` is the word ``random``, which if given, does not use the common
-    paragraph (starting "Lorem ipsum dolor sit amet, consectetuer...").
-
-    Examples:
-        * ``{% lorem %}`` will output the common "lorem ipsum" paragraph
-        * ``{% lorem 3 p %}`` will output the common "lorem ipsum" paragraph
-          and two random paragraphs each wrapped in HTML ``<p>`` tags
-        * ``{% lorem 2 w random %}`` will output two random latin words
-    """
-    bits = list(token.split_contents())
-    tagname = bits[0]
-    # Random bit
-    common = bits[-1] != 'random'
-    if not common:
-        bits.pop()
-    # Method bit
-    if bits[-1] in ('w', 'p', 'b'):
-        method = bits.pop()
-    else:
-        method = 'b'
-    # Count bit
-    if len(bits) > 1:
-        count = bits.pop()
-    else:
-        count = '1'
-    count = parser.compile_filter(count)
-    if len(bits) != 1:
-        raise template.TemplateSyntaxError(
-            "Incorrect format for %r tag" % tagname
-        )
-    return LoremNode(count, method, common)
-lorem = register.tag(lorem)
 
 
 @register.simple_tag

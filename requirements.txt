@@ -1,12 +1,10 @@
-PyYAML==3.10
-argparse
-coverage==3.7.1
-pep8==1.4.6
-py==1.4.19
-pyflakes
-python-coveralls==2.4.2
-requests==2.2.1
-sh==1.09
-six==1.5.2
-tox==1.6.1
-virtualenv==1.11.1
+# Requirements
+six>=1.5.2
+
+# Documentation
+mkdocs
+
+# Testing
+flake8
+python-coveralls
+coverage

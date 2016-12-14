@@ -21,7 +21,7 @@ class TestCommand(Command):
                     'ENGINE': 'django.db.backends.sqlite3'
                 }
             },
-            INSTALLED_APPS = (
+            INSTALLED_APPS=(
                 'django.contrib.auth',
                 'django.contrib.contenttypes',
                 'django.contrib.sessions',
@@ -45,7 +45,7 @@ class TestCommand(Command):
 
 setup(
     name='greeking',
-    version='2.1.1',
+    version='2.1.3',
     description='Django template tools for printing filler, a \
     technique from the days of hot type known as greeking.',
     author='Ben Welsh',

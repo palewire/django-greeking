@@ -1,3 +1,4 @@
+import six
 from django.test import TestCase
 from django.template import Template, Context, TemplateSyntaxError
 
@@ -128,6 +129,13 @@ text='Hello LA' %}"
             self.render,
             "{% load greeking_tags %}{% placeholdit 200 200 b a b c d e%}"
         )
+        from greeking import placeholdit
+        url = placeholdit.get_url(250, random_background_color=True)
+        t6 = url
+        ctx, out = self.render(t6)
+        self.assertNotEqual(
+            out, u'<img src="http://placehold.it/250x250/cccccc/969696/"/>'
+        )
 
     def testPlaceKittens(self):
         """
@@ -142,62 +150,58 @@ text='Hello LA' %}"
             "{% load greeking_tags %}{% placekitten foobar %}"
         )
 
-    def testLoremIpsum(self):
-        """
-        Tests the tag for pulling lorem ipsum
-        """
-        t1 = "{% load greeking_tags %}{% lorem %}"
-        ctx, out = self.render(t1)
-        self.assertEqual(
-            out,
-            'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do\
- eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim\
- veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea\
- commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit\
- esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat\
- cupidatat non proident, sunt in culpa qui officia deserunt mollit anim\
- id est laborum.'
-        )
-        t2 = "{% load greeking_tags %}{% lorem 3 p %}"
-        self.render(t2)
-        t3 = "{% load greeking_tags %}{% lorem 3 w %}"
-        self.render(t3)
-        t4 = "{% load greeking_tags %}{% lorem 3 b %}"
-        self.render(t4)
-        t5 = "{% load greeking_tags %}{% lorem 3 p random %}"
-        self.render(t5)
-        t6 = "{% load greeking_tags %}{% lorem 3 w random %}"
-        self.render(t6)
-        t7 = "{% load greeking_tags %}{% lorem a p %}"
-        self.render(t7)
-        self.assertRaises(
-            TemplateSyntaxError,
-            self.render,
-            "{% load greeking_tags %}{% lorem 1 p random foobar %}"
-        )
-
-    def testLoremPixum(self):
-        """
-        Tests the tag for pulling lorem pixum images.
-        """
-        t1 = "{% load greeking_tags %}{% lorem_pixum 200 200 %}"
-        ctx, out = self.render(t1)
-        self.assertEqual(
-            out,
-            '<img src="http://lorempixum.com/200/200/"/>'
-        )
-        self.assertRaises(
-            TemplateSyntaxError,
-            self.render,
-            "{% load greeking_tags %}{% lorem_pixum foobar %}"
-        )
-
     def testLatimesIpsum(self):
         from greeking import latimes_ipsum
-        self.assertTrue(
-            isinstance(latimes_ipsum.get_story(), latimes_ipsum.Story)
-        )
+
+        story = latimes_ipsum.get_story()
+        self.assertTrue(isinstance(story, latimes_ipsum.Story))
+        self.assertTrue(isinstance(story.content, six.string_types))
+
         related_items = latimes_ipsum.get_related_items()
         self.assertTrue(isinstance(related_items[0], latimes_ipsum.RelatedItem))
         self.assertTrue(len(related_items) == 4)
         self.assertTrue(len(latimes_ipsum.get_related_items(1)) == 1)
+
+        image = latimes_ipsum.get_image(250)
+        self.assertTrue(isinstance(image, latimes_ipsum.Image))
+        t2 = latimes_ipsum.get_image(250, 250, True)
+        ctx, out = self.render(t2)
+        self.assertTrue(
+            t2.url != 'http://placehold.it/250x250/cccccc/969696/'
+        )
+        t3 = latimes_ipsum.get_image(250)
+        ctx, out = self.render(t3)
+        self.assertTrue(
+            t3.url == 'http://placehold.it/250x250/cccccc/969696/'
+        )
+
+        quote = latimes_ipsum.get_quote()
+        self.assertTrue(isinstance(quote, latimes_ipsum.Quote))
+
+        """
+        Tests the tags for pulling story, image, related items, and quotes
+        """
+
+        t4 = "{% load greeking_tags %}{% latimes_story as obj %}"
+        ctx, out = self.render(t4)
+
+        t5 = "{% load greeking_tags %}{% latimes_image 250 250 000000 as obj %} \
+        {{ obj.url }} \
+        {{ obj.caption }} \
+        {{ obj.credit }}"
+        ctx, out = self.render(t5)
+
+        t6 = "{% load greeking_tags %}{% latimes_quote as obj %} \
+        {{ obj.quote }} \
+        {{ obj.source }}"
+        ctx, out = self.render(t6)
+
+        t7 = "{% load greeking_tags %}{% latimes_related_items as obj %} \
+        {{ obj.headline }} \
+        {{ obj.url }} \
+        {{ obj.image_url }}"
+        ctx, out = self.render(t7)
+
+        t8 = "{% load greeking_tags %}{% latimes_related_items 1 as obj %}"
+
+        ctx, out = self.render(t8)

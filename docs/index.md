@@ -312,8 +312,8 @@ An object_list of filler comments for use in greeking content for Django's [popu
 
 ## Open-source resources
 
-* Repo: [https://github.com/palewire/django-greeking](https://github.com/palewire/django-greeking)
-* Issues: [https://github.com/palewire/django-greeking/issues](https://github.com/palewire/django-greeking/issues)
+* Repo: [https://github.com/datadesk/django-greeking](https://github.com/datadesk/django-greeking)
+* Issues: [https://github.com/datadesk/django-greeking/issues](https://github.com/datadesk/django-greeking/issues)
 * Packaging: [https://pypi.python.org/pypi/greeking](https://pypi.python.org/pypi/greeking)
-* Testing: [https://travis-ci.org/palewire/django-greeking](https://travis-ci.org/palewire/django-greeking)
-* Coverage: [https://coveralls.io/r/palewire/django-greeking](https://coveralls.io/r/palewire/django-greeking)
+* Testing: [https://travis-ci.org/datadesk/django-greeking](https://travis-ci.org/datadesk/django-greeking)
+* Coverage: [https://coveralls.io/r/datadesk/django-greeking](https://coveralls.io/r/datadesk/django-greeking)

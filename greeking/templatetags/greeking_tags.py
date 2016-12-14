@@ -3,9 +3,7 @@ import six
 from django import template
 from greeking import quotables
 from django.utils.html import format_html
-from greeking.lorem_ipsum import words, paragraphs
 from greeking.fillmurray import get_url as get_fillmurray_url
-from greeking.lorem_pixum import get_url as get_lorem_pixum_url
 from greeking.placeholdit import get_url as get_placeholdit_url
 from greeking.placekittens import get_url as get_placekitten_url
 from greeking.pangrams import get_pangram, get_html as get_pangram_html
@@ -17,23 +15,54 @@ register = template.Library()
 @register.simple_tag
 def latimes_story():
     """
-    Return an latimes_ipsum Story object.
+    Return an latimes_ipsum Story object, which has many possible variables,
+    including slug, headline, byline, pub_date, canonical_url, kicker, description,
+    sources, credits, and image (which are used for header images and has a default size of 900).
+
+    Example:
+
+        {% latimes_story as obj %}
+            {{ obj.headline }}
+            {{ obj.byline }}
+            {{ obj.caption }}
+
     """
     return get_story()
 
 
 @register.simple_tag
-def latimes_image(width, height):
+def latimes_image(width, height, background_color):
     """
-    Return an latimes_ipsum Image object.
+    Return an latimes_ipsum Image object with a default background color of #ccc unless you specify
+    a background color. Also has option to return caption and credit.
+
+    Usage format:
+
+        {% latimes_image [width] [height] [background_color] as obj %}
+
+    Example usage:
+
+        Image at 250 wide and 400 high with background color of #000
+        {% latimes_image 250 400 000000 %}
+        <img src="{{obj.url}}">
+        {{ obj.caption }}
+        {{ obj.credit }}
+
     """
-    return get_image(width, height)
+    return get_image(width, height, background_color)
 
 
 @register.simple_tag
-def latimes_quote(width, height):
+def latimes_quote():
     """
     Return an latimes_ipsum Quote object.
+
+    Example:
+
+        {% latimes_quote as obj %}
+            {{ obj.quote }}
+            {{ obj.source }}
+
     """
     return get_quote()
 
@@ -42,6 +71,21 @@ def latimes_quote(width, height):
 def latimes_related_items(count=4):
     """
     Return a list of latimes_ipsum Quote object.
+
+    Example usage:
+
+    {% latimes_related_items as related_items %}
+    {% for item in related_items %}
+        <div>
+                <a href="{{ item.url }}">
+                   <p>{{ item.headline }}</p>
+                </a>
+                <a href="{{ item.url }}">
+                   <img src="{{ item.image_url }}">
+                </a>
+        </div>
+    {% endfor %}
+    
     """
     return get_related_items(count)
 
@@ -70,7 +114,8 @@ def placeholdit(
     height,
     background_color="cccccc",
     text_color="969696",
-    text=None
+    text=None,
+    random_background_color=False
 ):
     """
     Creates a placeholder image using placehold.it
@@ -82,7 +127,7 @@ def placeholdit(
     Example usage:
 
         Default image at 250 square
-        {% placeholdit 250 250 %}
+        {% placeholdit 250 %}
 
         100 wide and 200 high
         {% placeholdit 100 200 %}

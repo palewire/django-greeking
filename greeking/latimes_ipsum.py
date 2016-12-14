@@ -71,7 +71,7 @@ class Quote(object):
 
 def get_story():
     """
-    Returns a boilerplate story as an object.
+    Returns a boiler plate story as an object.
     """
     return Story(
         slug="la-data-latimes-ipsum",
@@ -100,12 +100,12 @@ def get_related_items(count=4):
     return [RelatedItem(**defaults) for x in range(0, count)]
 
 
-def get_image(width, height=None, random_background_color=False):
+def get_image(width, height=None, background_color="cccccc", random_background_color=False):
     """
     Returns image with caption, credit, and random background color as requested.
     """
     return Image(
-        url=placeholdit.get_url(width, height=height, random_background_color=random_background_color),
+        url=placeholdit.get_url(width, height=height, background_color=background_color, random_background_color=random_background_color),
         credit="This is not an image credit",
         caption="This is not a caption"
     )

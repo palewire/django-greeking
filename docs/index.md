@@ -134,33 +134,66 @@ Which would print out as:
 
 ### Image objects
 
+```html+django
+{% latimes_image 250 250 as obj %}
+<img src="{{obj.url}}">
+<p>Credits: {{obj.caption}}. ({{obj.credit}})</p>
+```
+
+Which would print out as:
+```html
+<img src="https://placeholdit.imgix.net/~text?txtsize=23&bg=000000&txt=250%C3%97250&w=250&h=250">
+<p>Credits: This is not an image caption. (This is not an image credit)</p>
+```
+
+You give images a custom background color like so:
+
+```html
+{% latimes_image 250 250 000000 as obj %}
+```
+
+Which would give the image a background color of ```#000000```. If there is no background color set, it will automatically be ```#CCCCCC```.
+
+
 
 ### Quote objects
+
+```html+django
+{% latimes_quote as obj %}
+<div>{{ obj.quote }}</div>
+<p> — {{ obj.source }}</p>
+```
+
+Which would print out as:
+
+```html
+<div>This is not a quote</div>
+<p> — This is not a source</p>
+```
 
 
 ### Related item lists
 
-
-
-To use latimes_ipsum, include the latimes_ipsum objects like so:
+Related items link to other similar stories at the bottom of an article. By default, there are 4 related items.
 
 ```html+django
-def latimes_ipsum(request):
-    """
-    A context processor to include lorem ipsum objects from the
-    Los Angeles Times.
-    """
-    from greeking import latimes_ipsum
-    latimes_ipsum.get_story()
-    latimes_ipsum.get_related_items(4)
-    latimes_ipsum.get_image(250)
-
+{% latimes_related_items as related_items %}
+{% for item in related_items %}
+    <div>
+            <a href="{{ item.url }}">
+               <p>{{ item.headline }}</p>
+            </a>
+            <a href="{{ item.url }}">
+               <img src="{{ item.image_url }}">
+            </a>
+    </div>
+{% endfor %}
 ```
 
 
 ## Jabberwocky
 
-<img height=300 style="float:right; margin-left: 15px;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Jabberwocky.jpg/800px-Jabberwocky.jpg">
+<img height=300 style="float:right; margin: 0 0 30px 15px;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Jabberwocky.jpg/800px-Jabberwocky.jpg">
 
 ["Jabberywocky"](https://en.wikipedia.org/wiki/Jabberwocky) is a 1871 poem by Lewis Carroll, the author of "Alice in Wonderland." Selections can be printed by using the tag below.
 The number of paragraphs can be optionally provided to limit its length. The poem has seven paragraphs in total.

@@ -69,6 +69,7 @@ class GreekingTemplateTagTests(TestCase):
             for k, v in list(comment_dict.items()):
                 self.assertEqual(v, match[k])
 
+
     def testFillMuray(self):
         """
         Tests the tag for pulling Bill Murray images.
@@ -162,17 +163,46 @@ text='Hello LA' %}"
         self.assertTrue(len(related_items) == 4)
         self.assertTrue(len(latimes_ipsum.get_related_items(1)) == 1)
 
-        latimes_ipsum.get_image(250)
-        t1 = latimes_ipsum.get_image(250, 250, True)
-        ctx, out = self.render(t1)
-        self.assertTrue(
-            t1.url != 'http://placehold.it/250x250/cccccc/969696/'
-        )
-        t2 = latimes_ipsum.get_image(250)
+        image = latimes_ipsum.get_image(250)
+        self.assertTrue(isinstance(image, latimes_ipsum.Image))
+        t2 = latimes_ipsum.get_image(250, 250, True)
         ctx, out = self.render(t2)
         self.assertTrue(
-            t2.url == 'http://placehold.it/250x250/cccccc/969696/'
+            t2.url != 'http://placehold.it/250x250/cccccc/969696/'
+        )
+        t3 = latimes_ipsum.get_image(250)
+        ctx, out = self.render(t3)
+        self.assertTrue(
+            t3.url == 'http://placehold.it/250x250/cccccc/969696/'
         )
 
         quote = latimes_ipsum.get_quote()
         self.assertTrue(isinstance(quote, latimes_ipsum.Quote))
+
+        """
+        Tests the tags for pulling story, image, related items, and quotes
+        """
+
+        t4 = "{% load greeking_tags %}{% latimes_story as obj %}"
+        ctx, out = self.render(t4)
+
+        t5 = "{% load greeking_tags %}{% latimes_image 250 250 000000 as obj %} \
+        {{ obj.url }} \
+        {{ obj.caption }} \
+        {{ obj.credit }}"
+        ctx, out = self.render(t5)
+
+        t6 = "{% load greeking_tags %}{% latimes_quote as obj %} \
+        {{ obj.quote }} \
+        {{ obj.source }}"
+        ctx, out = self.render(t6)
+
+        t7 = "{% load greeking_tags %}{% latimes_related_items as obj %} \
+        {{ obj.headline }} \
+        {{ obj.url }} \
+        {{ obj.image_url }}"
+        ctx, out = self.render(t7)
+
+        t8 = "{% load greeking_tags %}{% latimes_related_items 1 as obj %}"
+
+        ctx, out = self.render(t8)

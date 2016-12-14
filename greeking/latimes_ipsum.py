@@ -12,6 +12,7 @@ from django.utils import lorem_ipsum
 # Objects
 #
 
+
 class Story(object):
     """
     A boilerplate story.
@@ -74,6 +75,7 @@ class Quote(object):
 #
 # Retrieval methods
 #
+
 
 def get_story():
     """

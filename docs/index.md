@@ -303,13 +303,14 @@ An object_list of filler comments for use in greeking content for Django's [popu
 * Increased documentation of all libraries
 * Added Turkish pangram
 
+
 ## Credits
 
 * Pangrams are drawn from [Markus Kuhn](http://www.cl.cam.ac.uk/~mgk25/ucs/examples/quickbrown.txt).
 * Comments drawn from the work of giants of our time.
 
 
-## Other resources
+## Open-source resources
 
 * Repo: [https://github.com/palewire/django-greeking](https://github.com/palewire/django-greeking)
 * Issues: [https://github.com/palewire/django-greeking/issues](https://github.com/palewire/django-greeking/issues)

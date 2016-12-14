@@ -8,6 +8,9 @@ from . import placeholdit
 from datetime import datetime
 from django.utils import lorem_ipsum
 
+#
+# Objects
+#
 
 class Story(object):
     """
@@ -44,10 +47,10 @@ class RelatedItem(object):
     """
     A condensed reference to a story.
     """
-    def __init__(self, headline, url, image_url):
+    def __init__(self, headline, url, image):
         self.headline = headline
         self.url = url
-        self.image_url = image_url
+        self.image = image
 
 
 class Image(object):
@@ -68,6 +71,9 @@ class Quote(object):
         self.quote = quote
         self.source = source
 
+#
+# Retrieval methods
+#
 
 def get_story():
     """
@@ -95,7 +101,7 @@ def get_related_items(count=4):
     defaults = dict(
         headline="This is not a headline",
         url="http://www.example.com/",
-        image_url=placeholdit.get_url(400, 400)
+        image=get_image(400, 400)
     )
     return [RelatedItem(**defaults) for x in range(0, count)]
 
@@ -105,10 +111,12 @@ def get_image(width, height=None, background_color="cccccc", random_background_c
     Returns image with caption, credit, and random background color as requested.
     """
     return Image(
-        url=placeholdit.get_url(width,
-                                height=height,
-                                background_color=background_color,
-                                random_background_color=random_background_color),
+        url=placeholdit.get_url(
+            width,
+            height=height,
+            background_color=background_color,
+            random_background_color=random_background_color
+        ),
         credit="This is not an image credit",
         caption="This is not a caption"
     )

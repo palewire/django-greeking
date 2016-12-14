@@ -27,7 +27,10 @@ Before you can use any of the template tags, you have to add the app to the
 ``INSTALLED_APPS`` your settings.py file, like so:
 
 ```python
+INSTALLED_APPS = [
+    ...
     'greeking',
+]
 ```
 
 And then import the library into your template.
@@ -60,7 +63,7 @@ Another is [placekitten.com](https://placekitten.com/)
 <img src="https://placekitten.com/200/200">
 
 
-Another is fillmurray.com
+Another is [fillmurray.com](http://www.fillmurray.com/).
 
 ```html+django
 {% fillmurray 600 200 %}
@@ -70,7 +73,7 @@ Another is fillmurray.com
 
 ### Customizing images
 
-The placeholdit tag allows for the text over the image to be customized, as well as the text and background colors.
+The ``placeholdit`` tag allows for the text over the image to be customized, as well as the text and background colors.
 
 ```html+django
 {% placeholdit 400 250 text='Hello' %}
@@ -105,10 +108,30 @@ the language code like so:
 
 > Falsches Üben von Xylophonmusik quält jeden größeren Zwerg.
 
+Here is the complete list of available languages.
+
+|Code|Language|
+|:---|:-------|
+|en|English|
+|da|Danish|
+|de|German|
+|el|Greek|
+|es|Spanish|
+|fr|French|
+|ga|Irish|
+|he|Hebrew|
+|hu|Hungarian|
+|is|Icelandic|
+|jp|Japanese|
+|pl|Polish|
+|ru|Russian|
+|tr|Turkish|
+
 
 ## Los Angeles Times ipsum
 
-A set of objects with boilerplate text, URLs and a set of the attributes common to news.
+A set of objects with boilerplate text, URLs and other attributes common to news. Used by the Los Angeles Times Data Desk to greek
+its documentation and pages under development.
 
 The library can generate ``Story``, ``Image``, ``RelatedItem`` and ``Quote`` objects.
 
@@ -120,31 +143,44 @@ They should be assigned to variables in the template and then printed out as nee
 {% latimes_story as obj %}
 
 <h1>{{ obj.headline }}</h1>
-<div>
-    {{ obj.byline }}
-</div>
+<div>{{ obj.byline }}</div>
 ```
 
 Which would print out as:
 
-```html
-<h1>This is not a headline</h1>
+> <h1>This is not a headline</h1>
 <div>This is not a byline</div>
-```
+
+Here are all the attributes on a ``Story`` object:
+
+|Name|
+|:---|
+|slug|
+|headline|
+|byline|
+|pub_date|
+|canonical_url|
+|kicker|
+|description|
+|sources|
+|credits|
+|content|
+|image|
+
 
 ### Image objects
 
 ```html+django
 {% latimes_image 250 250 as obj %}
-<img src="{{obj.url}}">
-<p>Credits: {{obj.caption}}. ({{obj.credit}})</p>
+
+<img src="{{ obj.url }}">
+<p>Credits: {{ obj.caption }}. ({{ obj.credit }})</p>
 ```
 
 Which would print out as:
-```html
-<img src="https://placeholdit.imgix.net/~text?txtsize=23&bg=000000&txt=250%C3%97250&w=250&h=250">
+
+> <img src="https://placeholdit.imgix.net/~text?txtsize=23&bg=cccccc&txt=250%C3%97250&w=250&h=250">
 <p>Credits: This is not an image caption. (This is not an image credit)</p>
-```
 
 You give images a custom background color like so:
 
@@ -155,21 +191,36 @@ You give images a custom background color like so:
 Which would give the image a background color of ```#000000```. If there is no background color set, it will automatically be ```#CCCCCC```.
 
 
+Here are all the attributes on an ``Image`` object:
+
+|Name|
+|:---|
+|url|
+|credit|
+|caption|
+
 
 ### Quote objects
 
 ```html+django
 {% latimes_quote as obj %}
-<div>{{ obj.quote }}</div>
+
+<q>{{ obj.quote }}</q>
 <p> — {{ obj.source }}</p>
 ```
 
 Which would print out as:
 
-```html
-<div>This is not a quote</div>
+> <q>This is not a quote</q>
 <p> — This is not a source</p>
-```
+
+
+Here are all the attributes on a ``Quote`` object:
+
+|Name|
+|:---|
+|quote|
+|source|
 
 
 ### Related item lists
@@ -178,17 +229,26 @@ Related items link to other similar stories at the bottom of an article. By defa
 
 ```html+django
 {% latimes_related_items as related_items %}
+
 {% for item in related_items %}
     <div>
-            <a href="{{ item.url }}">
-               <p>{{ item.headline }}</p>
-            </a>
-            <a href="{{ item.url }}">
-               <img src="{{ item.image_url }}">
-            </a>
+        <a href="{{ item.url }}">
+           <p>{{ item.headline }}</p>
+        </a>
+        <a href="{{ item.url }}">
+           <img src="{{ item.image.url }}">
+        </a>
     </div>
 {% endfor %}
 ```
+
+Here are all the attributes on a `Related` object:
+
+|Name|
+|:---|
+|headline|
+|url|
+|image|
 
 
 ## Jabberwocky

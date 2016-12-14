@@ -128,7 +128,7 @@ Here is the complete list of available languages.
 |tr|Turkish|
 
 
-## Los Angeles Times ipsum
+## L.A. Times ipsum
 
 A set of objects with boilerplate text, URLs and other attributes common to news. Used by the Los Angeles Times Data Desk to greek
 its documentation and pages under development.

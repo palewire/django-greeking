@@ -253,8 +253,6 @@ Here are all the attributes on a `Related` object:
 
 ## Jabberwocky
 
-<img height=300 style="float:right; margin: 0 0 30px 15px;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Jabberwocky.jpg/800px-Jabberwocky.jpg">
-
 ["Jabberywocky"](https://en.wikipedia.org/wiki/Jabberwocky) is a 1871 poem by Lewis Carroll, the author of "Alice in Wonderland." Selections can be printed by using the tag below.
 The number of paragraphs can be optionally provided to limit its length. The poem has seven paragraphs in total.
 

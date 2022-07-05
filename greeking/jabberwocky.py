@@ -1,8 +1,6 @@
-# -*- coding: utf-8 -*-
 """
 Pull text from Lewis Carroll's poem Jabberwocky for template greeking.
 """
-import six
 from django.utils.html import format_html
 
 VERSE = """'Twas brillig, and the slithy toves
@@ -58,4 +56,4 @@ def get_html(grafs):
     """
     html = [format_html('<p>{}</p>', p) for p in grafs]
     html = [p.replace("\n", "<br>") for p in html]
-    return format_html(six.text_type('\n\n'.join(html)))
+    return format_html(str('\n\n'.join(html)))

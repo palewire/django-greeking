@@ -1,4 +1,3 @@
-import six
 from django.test import TestCase
 from django.template import Template, Context, TemplateSyntaxError
 
@@ -155,7 +154,7 @@ text='Hello LA' %}"
 
         story = latimes_ipsum.get_story()
         self.assertTrue(isinstance(story, latimes_ipsum.Story))
-        self.assertTrue(isinstance(story.content, six.string_types))
+        self.assertTrue(isinstance(story.content, str))
 
         related_items = latimes_ipsum.get_related_items()
         self.assertTrue(isinstance(related_items[0], latimes_ipsum.RelatedItem))

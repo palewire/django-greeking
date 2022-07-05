@@ -1,9 +1,6 @@
-# -*- coding: utf-8 -*-
 """
 Create objects from past Los Angeles Times stories for use as boilerplate.
 """
-from __future__ import absolute_import
-import six
 from . import placeholdit
 from datetime import datetime
 from django.utils import lorem_ipsum
@@ -91,7 +88,7 @@ def get_story():
         description=lorem_ipsum.COMMON_P.split(".")[0],
         sources="This is not a source",
         credits="This is not a credit",
-        content=six.text_type('\n\n'.join(lorem_ipsum.paragraphs(6))),
+        content=str('\n\n'.join(lorem_ipsum.paragraphs(6))),
         image=get_image(900)
     )
 

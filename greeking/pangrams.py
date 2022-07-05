@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Pull pangrams from a variety of world languages for template testing.
 

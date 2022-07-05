@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Utility for generating placeholder Bill Murray images
 """

@@ -7,7 +7,7 @@ Django template tools for printing filler, a technique from the days of hot type
 
 ```{contents} Sections
 :local:
-:depth: 1
+:depth: 2
 ```
 
 ## Features
@@ -48,7 +48,9 @@ And then import the library into your template.
 Then you just need to call out the tag you want to use.
 
 
-## Placeholder images
+## Templatetags
+
+### Placeholder images
 
 All placeholder providers expect a width and height to be provided.
 
@@ -77,7 +79,7 @@ Another is [fillmurray.com](http://www.fillmurray.com/).
 
 <img src="http://www.fillmurray.com/600/200">
 
-### Customizing images
+#### Customizing images
 
 The ``placeholdit`` tag allows for the text over the image to be customized, as well as the text and background colors.
 
@@ -93,7 +95,7 @@ The ``placeholdit`` tag allows for the text over the image to be customized, as 
 
 <img src="https://placeholdit.imgix.net/~text?txtsize=38&bg=ffffff&txtclr=000000&txt=400%C3%97250&w=400&h=250">
 
-## Pangrams
+### Pangrams
 
 A pangram is a phrase that includes every letter of an alphabet. It is useful when testing font implementations.
 
@@ -134,7 +136,7 @@ Here is the complete list of available languages.
 |tr|Turkish|
 
 
-## L.A. Times ipsum
+### L.A. Times ipsum
 
 A set of objects with boilerplate text, URLs and other attributes common to news. Used by the Los Angeles Times Data Desk to greek
 its documentation and pages under development.
@@ -143,7 +145,7 @@ The library can generate ``Story``, ``Image``, ``RelatedItem`` and ``Quote`` obj
 
 They should be assigned to variables in the template and then printed out as needed.
 
-### Story objects
+#### Story objects
 
 ```html+django
 {% latimes_story as obj %}
@@ -174,7 +176,7 @@ Here are all the attributes on a ``Story`` object:
 |image|
 
 
-### Image objects
+#### Image objects
 
 ```html+django
 {% latimes_image 250 250 as obj %}
@@ -206,7 +208,7 @@ Here are all the attributes on an ``Image`` object:
 |caption|
 
 
-### Quote objects
+#### Quote objects
 
 ```html+django
 {% latimes_quote as obj %}
@@ -229,7 +231,7 @@ Here are all the attributes on a ``Quote`` object:
 |source|
 
 
-### Related item lists
+#### Related item lists
 
 Related items link to other similar stories at the bottom of an article. By default, there are 4 related items.
 
@@ -257,7 +259,7 @@ Here are all the attributes on a `Related` object:
 |image|
 
 
-## Jabberwocky
+### Jabberwocky
 
 ["Jabberywocky"](https://en.wikipedia.org/wiki/Jabberwocky) is a 1871 poem by Lewis Carroll, the author of "Alice in Wonderland." Selections can be printed by using the tag below.
 The number of paragraphs can be optionally provided to limit its length. The poem has seven paragraphs in total.
@@ -282,7 +284,7 @@ So rested he by the Tumtum tree,
 And stood awhile in thought.
 
 
-## Comments
+### Comments
 
 An object_list of filler comments for use in greeking content for Django's [popular comments application](https://github.com/django/django-contrib-comments).
 

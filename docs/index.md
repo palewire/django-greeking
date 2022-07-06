@@ -54,15 +54,7 @@ Then you just need to call out the tag you want to use.
 
 All placeholder providers expect a width and height to be provided.
 
-One provider we have a templatetag for is [placehold.it](https://placehold.it/).
-
-```html+django
-{% placeholdit 400 250 %}
-```
-
-<img src="https://placeholdit.imgix.net/~text?txtsize=38&txt=400%C3%97250&w=400&h=250">
-
-Another is [placekitten.com](https://placekitten.com/)
+One provider  is [placekitten.com](https://placekitten.com/)
 
 ```html+django
 {% placekitten 200 200 %}
@@ -173,39 +165,6 @@ Here are all the attributes on a ``Story`` object:
 |sources|
 |credits|
 |content|
-|image|
-
-
-#### Image objects
-
-```html+django
-{% latimes_image 250 250 as obj %}
-
-<img src="{{ obj.url }}">
-<p>Credits: {{ obj.caption }}. ({{ obj.credit }})</p>
-```
-
-Which would print out as:
-
-> <img src="https://placeholdit.imgix.net/~text?txtsize=23&bg=cccccc&txt=250%C3%97250&w=250&h=250">
-<p>Credits: This is not an image caption. (This is not an image credit)</p>
-
-You give images a custom background color like so:
-
-```html
-{% latimes_image 250 250 000000 as obj %}
-```
-
-Which would give the image a background color of ```#000000```. If there is no background color set, it will automatically be ```#CCCCCC```.
-
-
-Here are all the attributes on an ``Image`` object:
-
-|Name|
-|:---|
-|url|
-|credit|
-|caption|
 
 
 #### Quote objects
@@ -229,34 +188,6 @@ Here are all the attributes on a ``Quote`` object:
 |:---|
 |quote|
 |source|
-
-
-#### Related item lists
-
-Related items link to other similar stories at the bottom of an article. By default, there are 4 related items.
-
-```html+django
-{% latimes_related_items as related_items %}
-
-{% for item in related_items %}
-    <div>
-        <a href="{{ item.url }}">
-           <p>{{ item.headline }}</p>
-        </a>
-        <a href="{{ item.url }}">
-           <img src="{{ item.image.url }}">
-        </a>
-    </div>
-{% endfor %}
-```
-
-Here are all the attributes on a `Related` object:
-
-|Name|
-|:---|
-|headline|
-|url|
-|image|
 
 
 ### Jabberwocky

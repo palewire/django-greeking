@@ -5,10 +5,9 @@ from greeking import quotables
 from greeking.fillmurray import get_url as get_fillmurray_url
 from greeking.jabberwocky import get_grafs
 from greeking.jabberwocky import get_html as get_jabberwocky_html
-from greeking.latimes_ipsum import get_image, get_quote, get_related_items, get_story
+from greeking.latimes_ipsum import get_quote, get_story
 from greeking.pangrams import get_html as get_pangram_html
 from greeking.pangrams import get_pangram
-from greeking.placeholdit import get_url as get_placeholdit_url
 from greeking.placekittens import get_url as get_placekitten_url
 
 register = template.Library()
@@ -33,28 +32,6 @@ def latimes_story():
 
 
 @register.simple_tag
-def latimes_image(width, height, background_color):
-    """
-    Return an latimes_ipsum Image object with a default background color of #ccc unless you specify
-    a background color. Also has option to return caption and credit.
-
-    Usage format:
-
-        {% latimes_image [width] [height] [background_color] as obj %}
-
-    Example usage:
-
-        Image at 250 wide and 400 high with background color of #000
-        {% latimes_image 250 400 000000 %}
-        <img src="{{obj.url}}">
-        {{ obj.caption }}
-        {{ obj.credit }}
-
-    """
-    return get_image(width, height, background_color)
-
-
-@register.simple_tag
 def latimes_quote():
     """
     Return an latimes_ipsum Quote object.
@@ -67,29 +44,6 @@ def latimes_quote():
 
     """
     return get_quote()
-
-
-@register.simple_tag
-def latimes_related_items(count=4):
-    """
-    Return a list of latimes_ipsum Quote object.
-
-    Example usage:
-
-    {% latimes_related_items as related_items %}
-    {% for item in related_items %}
-        <div>
-                <a href="{{ item.url }}">
-                   <p>{{ item.headline }}</p>
-                </a>
-                <a href="{{ item.url }}">
-                   <img src="{{ item.image_url }}">
-                </a>
-        </div>
-    {% endfor %}
-
-    """
-    return get_related_items(count)
 
 
 @register.simple_tag
@@ -107,46 +61,6 @@ def fillmurray(width, height):
         {% fillmurray 250 400 %}
     """
     url = get_fillmurray_url(width, height)
-    return format_html('<img src="{}"/>', url)
-
-
-@register.simple_tag
-def placeholdit(
-    width,
-    height,
-    background_color="cccccc",
-    text_color="969696",
-    text=None,
-    random_background_color=False,
-):
-    """
-    Creates a placeholder image using placehold.it
-
-    Usage format:
-
-      {% placeholdit [width] [height] [background_color] [text_color] [text] %}
-
-    Example usage:
-
-        Default image at 250 square
-        {% placeholdit 250 %}
-
-        100 wide and 200 high
-        {% placeholdit 100 200 %}
-
-        Custom background and text colors
-        {% placeholdit 100 200 background_color='fff' text_color=000' %}
-
-        Custom text
-        {% placeholdit 100 200 text='Hello LA' %}
-    """
-    url = get_placeholdit_url(
-        width,
-        height,
-        background_color=background_color,
-        text_color=text_color,
-        text=text,
-    )
     return format_html('<img src="{}"/>', url)
 
 

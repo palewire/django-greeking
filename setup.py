@@ -84,6 +84,8 @@ class TestCommand(Command):
 setup(
     name='greeking',
     description='Django template tools for printing filler, a technique from the days of hot type known as greeking',
+    long_description=read("README.md"),
+    long_description_content_type="text/markdown",
     author='Ben Welsh',
     author_email='b@palewi.re',
     url='https://palewi.re/docs/django-greeking/',

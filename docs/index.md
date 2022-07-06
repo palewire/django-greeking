@@ -71,22 +71,6 @@ Another is [fillmurray.com](http://www.fillmurray.com/).
 
 <img src="http://www.fillmurray.com/600/200">
 
-#### Customizing images
-
-The ``placeholdit`` tag allows for the text over the image to be customized, as well as the text and background colors.
-
-```html+django
-{% placeholdit 400 250 text='Hello' %}
-```
-
-<img src="https://placeholdit.imgix.net/~text?txtsize=38&txt=Hello&w=400&h=250&txttrack=0">
-
-```html+django
-{% placeholdit 400 250 background_color='fff' text_color='000' %}
-```
-
-<img src="https://placeholdit.imgix.net/~text?txtsize=38&bg=ffffff&txtclr=000000&txt=400%C3%97250&w=400&h=250">
-
 ### Pangrams
 
 A pangram is a phrase that includes every letter of an alphabet. It is useful when testing font implementations.

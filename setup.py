@@ -1,5 +1,43 @@
+import os
+
 from setuptools import setup
 from distutils.core import Command
+
+
+def read(fname):
+    with open(os.path.join(os.path.dirname(__file__), fname)) as f:
+        return f.read()
+
+
+def version_scheme(version):
+    """
+    Version scheme hack for setuptools_scm.
+
+    Appears to be necessary to due to the bug documented here: https://github.com/pypa/setuptools_scm/issues/342
+
+    If that issue is resolved, this method can be removed.
+    """
+    import time
+
+    from setuptools_scm.version import guess_next_version
+
+    if version.exact:
+        return version.format_with("{tag}")
+    else:
+        _super_value = version.format_next_version(guess_next_version)
+        now = int(time.time())
+        return _super_value + str(now)
+
+
+def local_version(version):
+    """
+    Local version scheme hack for setuptools_scm.
+
+    Appears to be necessary to due to the bug documented here: https://github.com/pypa/setuptools_scm/issues/342
+
+    If that issue is resolved, this method can be removed.
+    """
+    return ""
 
 
 class TestCommand(Command):
@@ -45,20 +83,17 @@ class TestCommand(Command):
 
 setup(
     name='greeking',
-    version='2.2.0',
     description='Django template tools for printing filler, a technique from the days of hot type known as greeking',
     author='Ben Welsh',
     author_email='b@palewi.re',
-    url='http://django-greeking.readthedocs.io/',
-    download_url='http://github.com/palewire/django-greeking.git',
+    url='https://palewi.re/docs/django-greeking/',
     include_package_data=True,
     packages=(
         'greeking',
         'greeking.templatetags',
     ),
     license='MIT',
-    keywords='greeking pangrams lorem ipsum quotables comments \
-    text jabberwocky placekittens fillmurray filler',
+    keywords='greeking pangrams lorem ipsum quotables comments text jabberwocky placekittens fillmurray filler',
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",
@@ -76,5 +111,12 @@ setup(
         'Framework :: Django :: 4',
         "Topic :: Software Development :: Libraries :: Python Modules",
     ],
-    cmdclass={'test': TestCommand}
+    cmdclass={'test': TestCommand},
+    setup_requires=["setuptools_scm"],
+    use_scm_version={"version_scheme": version_scheme, "local_scheme": local_version},
+    project_urls={
+        "Documentation": "https://palewi.re/docs/django-greeking/",
+        "Source": "https://github.com/datadesk/django-greeking/",
+        "Tracker": "https://github.com/datadesk/django-greeking/issues",
+    },
 )

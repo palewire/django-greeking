@@ -1,7 +1,14 @@
+```{include} _templates/nav.html
+```
+
 # django-greeking
 
-Django template tools for printing filler, a technique from the days of hot type known as greeking.
+Django template tools for printing filler, a technique from the days of hot type known as greeking
 
+```{contents} Sections
+:local:
+:depth: 1
+```
 
 ## Features
 
@@ -292,16 +299,6 @@ An object_list of filler comments for use in greeking content for Django's [popu
 {% endfor %}
 ```
 
-## Changelog
-
-### v2.2.0 (Dec. 2016)
-
-* Added ``latimes_ipsum`` library and documentation
-* Removed the ``{% lorem %}`` tag since it is now packaged with the Django
-* Removed broken image service lorem pixum
-* Increased documentation of all libraries
-* Added Turkish pangram
-
 
 ## Credits
 
@@ -312,7 +309,7 @@ An object_list of filler comments for use in greeking content for Django's [popu
 ## Open-source resources
 
 * Repo: [https://github.com/datadesk/django-greeking](https://github.com/datadesk/django-greeking)
-* Issues: [https://github.com/datadesk/django-greeking/issues](https://github.com/datadesk/django-greeking/issues)
-* Packaging: [https://pypi.python.org/pypi/greeking](https://pypi.python.org/pypi/greeking)
-* Testing: [https://travis-ci.org/datadesk/django-greeking](https://travis-ci.org/datadesk/django-greeking)
-* Coverage: [https://coveralls.io/r/datadesk/django-greeking](https://coveralls.io/r/datadesk/django-greeking)
+* Docs: [palewi.re/docs/django-greeking/](https://palewi.re/docs/django-greeking/)
+* Issues: [github.com/datadesk/django-greeking/issues](https://github.com/datadesk/django-greeking/issues)
+* Packaging: [pypi.python.org/pypi/django-greeking](https://pypi.python.org/pypi/django-greeking)
+* Testing: [github.com/datadesk/django-greeking/actions](https://github.com/datadesk/django-greeking/actions)

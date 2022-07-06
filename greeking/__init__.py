@@ -1,1 +1,1 @@
-default_app_config = 'greeking.apps.GreekingConfig'
+default_app_config = "greeking.apps.GreekingConfig"

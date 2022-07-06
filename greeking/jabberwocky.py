@@ -54,6 +54,6 @@ def get_html(grafs):
 
     Linebreaks are replaced with <br> tags.
     """
-    html = [format_html('<p>{}</p>', p) for p in grafs]
+    html = [format_html("<p>{}</p>", p) for p in grafs]
     html = [p.replace("\n", "<br>") for p in html]
-    return format_html(str('\n\n'.join(html)))
+    return format_html(str("\n\n".join(html)))

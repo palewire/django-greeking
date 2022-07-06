@@ -1,7 +1,7 @@
 """
 Utility for generating placeholder kitten images
 """
-URL = 'http://placekitten.com/%(width)s/%(height)s/'
+URL = "http://placekitten.com/%(width)s/%(height)s/"
 
 
 def get_url(width, height, color=True):

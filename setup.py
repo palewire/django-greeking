@@ -1,7 +1,7 @@
 import os
+from distutils.core import Command
 
 from setuptools import setup
-from distutils.core import Command
 
 
 def read(fname):
@@ -51,69 +51,71 @@ class TestCommand(Command):
 
     def run(self):
         from django.conf import settings
+
         settings.configure(
             DATABASES={
-                'default': {
-                    'NAME': 'test.db',
-                    'TEST_NAME': 'test.db',
-                    'ENGINE': 'django.db.backends.sqlite3'
+                "default": {
+                    "NAME": "test.db",
+                    "TEST_NAME": "test.db",
+                    "ENGINE": "django.db.backends.sqlite3",
                 }
             },
             INSTALLED_APPS=(
-                'django.contrib.auth',
-                'django.contrib.contenttypes',
-                'django.contrib.sessions',
-                'django.contrib.staticfiles',
-                'greeking',
+                "django.contrib.auth",
+                "django.contrib.contenttypes",
+                "django.contrib.sessions",
+                "django.contrib.staticfiles",
+                "greeking",
             ),
             TEMPLATES=[
                 {
-                    'BACKEND': 'django.template.backends.django.DjangoTemplates',
-                    'DIRS': [],
-                    'APP_DIRS': False,
-                    'OPTIONS': {},
+                    "BACKEND": "django.template.backends.django.DjangoTemplates",
+                    "DIRS": [],
+                    "APP_DIRS": False,
+                    "OPTIONS": {},
                 },
-            ]
+            ],
         )
-        from django.core.management import call_command
         import django
+        from django.core.management import call_command
+
         django.setup()
-        call_command('test', 'greeking')
+        call_command("test", "greeking")
 
 
 setup(
-    name='greeking',
-    description='Django template tools for printing filler, a technique from the days of hot type known as greeking',
+    name="greeking",
+    description="Django template tools for printing filler, a technique from the days of hot type known as greeking",
     long_description=read("README.md"),
     long_description_content_type="text/markdown",
-    author='Ben Welsh',
-    author_email='b@palewi.re',
-    url='https://palewi.re/docs/django-greeking/',
+    author="Ben Welsh",
+    author_email="b@palewi.re",
+    url="https://palewi.re/docs/django-greeking/",
     include_package_data=True,
     packages=(
-        'greeking',
-        'greeking.templatetags',
+        "greeking",
+        "greeking.templatetags",
     ),
-    license='MIT',
-    keywords='greeking pangrams lorem ipsum quotables comments text jabberwocky placekittens fillmurray filler',
+    license="MIT",
+    keywords="greeking pangrams lorem ipsum quotables comments text jabberwocky placekittens fillmurray filler",
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",
         "Intended Audience :: Science/Research",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
-        'Programming Language :: Python',
-        'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.7',
-        'Programming Language :: Python :: 3.8',
-        'Programming Language :: Python :: 3.9',
-        'Programming Language :: Python :: 3.10',
-        'Framework :: Django',
-        'Framework :: Django :: 3',
-        'Framework :: Django :: 4',
+        "Programming Language :: Python",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "Framework :: Django",
+        "Framework :: Django :: 3",
+        "Framework :: Django :: 4",
         "Topic :: Software Development :: Libraries :: Python Modules",
     ],
-    cmdclass={'test': TestCommand},
+    cmdclass={"test": TestCommand},
     setup_requires=["setuptools_scm"],
     use_scm_version={"version_scheme": version_scheme, "local_scheme": local_version},
     project_urls={

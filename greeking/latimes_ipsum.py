@@ -1,19 +1,22 @@
 """
 Create objects from past Los Angeles Times stories for use as boilerplate.
 """
-from . import placeholdit
 from datetime import datetime
+
 from django.utils import lorem_ipsum
+
+from . import placeholdit
 
 #
 # Objects
 #
 
 
-class Story(object):
+class Story:
     """
     A boilerplate story.
     """
+
     def __init__(
         self,
         slug,
@@ -41,33 +44,37 @@ class Story(object):
         self.image = image
 
 
-class RelatedItem(object):
+class RelatedItem:
     """
     A condensed reference to a story.
     """
+
     def __init__(self, headline, url, image):
         self.headline = headline
         self.url = url
         self.image = image
 
 
-class Image(object):
+class Image:
     """
     An image.
     """
+
     def __init__(self, url, credit, caption):
         self.url = url
         self.credit = credit
         self.caption = caption
 
 
-class Quote(object):
+class Quote:
     """
     A quote.
     """
+
     def __init__(self, quote, source):
         self.quote = quote
         self.source = source
+
 
 #
 # Retrieval methods
@@ -88,8 +95,8 @@ def get_story():
         description=lorem_ipsum.COMMON_P.split(".")[0],
         sources="This is not a source",
         credits="This is not a credit",
-        content=str('\n\n'.join(lorem_ipsum.paragraphs(6))),
-        image=get_image(900)
+        content=str("\n\n".join(lorem_ipsum.paragraphs(6))),
+        image=get_image(900),
     )
 
 
@@ -100,12 +107,14 @@ def get_related_items(count=4):
     defaults = dict(
         headline="This is not a headline",
         url="http://www.example.com/",
-        image=get_image(400, 400)
+        image=get_image(400, 400),
     )
     return [RelatedItem(**defaults) for x in range(0, count)]
 
 
-def get_image(width, height=None, background_color="cccccc", random_background_color=False):
+def get_image(
+    width, height=None, background_color="cccccc", random_background_color=False
+):
     """
     Returns image with caption, credit, and random background color as requested.
     """
@@ -114,10 +123,10 @@ def get_image(width, height=None, background_color="cccccc", random_background_c
             width,
             height=height,
             background_color=background_color,
-            random_background_color=random_background_color
+            random_background_color=random_background_color,
         ),
         credit="This is not an image credit",
-        caption="This is not a caption"
+        caption="This is not a caption",
     )
 
 
@@ -125,7 +134,4 @@ def get_quote():
     """
     Returns quote and its source.
     """
-    return Quote(
-        quote="This is not a pull quote",
-        source="This is not a quote source"
-    )
+    return Quote(quote="This is not a pull quote", source="This is not a quote source")

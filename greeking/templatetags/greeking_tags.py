@@ -1,13 +1,16 @@
-# -*- coding: utf-8 -*-
 from django import template
-from greeking import quotables
 from django.utils.html import format_html
+
+from greeking import quotables
 from greeking.fillmurray import get_url as get_fillmurray_url
+from greeking.jabberwocky import get_grafs
+from greeking.jabberwocky import get_html as get_jabberwocky_html
+from greeking.latimes_ipsum import get_image, get_quote, get_related_items, get_story
+from greeking.pangrams import get_html as get_pangram_html
+from greeking.pangrams import get_pangram
 from greeking.placeholdit import get_url as get_placeholdit_url
 from greeking.placekittens import get_url as get_placekitten_url
-from greeking.pangrams import get_pangram, get_html as get_pangram_html
-from greeking.jabberwocky import get_grafs, get_html as get_jabberwocky_html
-from greeking.latimes_ipsum import get_story, get_related_items, get_image, get_quote
+
 register = template.Library()
 
 
@@ -114,7 +117,7 @@ def placeholdit(
     background_color="cccccc",
     text_color="969696",
     text=None,
-    random_background_color=False
+    random_background_color=False,
 ):
     """
     Creates a placeholder image using placehold.it
@@ -190,7 +193,7 @@ def greek_comment_list():
 
 
 @register.simple_tag
-def pangram(language='en'):
+def pangram(language="en"):
     """
     Prints a pangram in the specified language.
 

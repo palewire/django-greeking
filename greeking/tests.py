@@ -1,9 +1,8 @@
+from django.template import Context, Template, TemplateSyntaxError
 from django.test import TestCase
-from django.template import Template, Context, TemplateSyntaxError
 
 
 class GreekingTemplateTagTests(TestCase):
-
     def render(self, t, **c):
         ctx = Context(c)
         out = Template(t).render(ctx)
@@ -14,6 +13,7 @@ class GreekingTemplateTagTests(TestCase):
         Tests the tag for pulling jabberwocky
         """
         from greeking.jabberwocky import get_grafs, get_html
+
         graph_range = list(range(1, 8))
         for graphs in graph_range:
             t = "{% load greeking_tags %}{% jabberwocky " + str(graphs) + " %}"
@@ -25,7 +25,7 @@ class GreekingTemplateTagTests(TestCase):
         self.assertRaises(
             TemplateSyntaxError,
             self.render,
-            "{% load greeking_tags %}{% jabberwocky foo bar %}"
+            "{% load greeking_tags %}{% jabberwocky foo bar %}",
         )
 
     def testPangrams(self):
@@ -33,6 +33,7 @@ class GreekingTemplateTagTests(TestCase):
         Tests the tag for pulling pangrams
         """
         from greeking.pangrams import PANGRAMS
+
         languages = list(PANGRAMS.keys())
         for language in languages:
             t = "{% load greeking_tags %}{% pangram '" + language + "' %}"
@@ -40,12 +41,12 @@ class GreekingTemplateTagTests(TestCase):
         self.assertRaises(
             TemplateSyntaxError,
             self.render,
-            "{% load greeking_tags %}{% pangram foobar %}"
+            "{% load greeking_tags %}{% pangram foobar %}",
         )
         self.assertRaises(
             TemplateSyntaxError,
             self.render,
-            "{% load greeking_tags %}{% pangram en foobar %}"
+            "{% load greeking_tags %}{% pangram en foobar %}",
         )
         self.render("{% load greeking_tags %}{% pangram %}")
 
@@ -54,15 +55,16 @@ class GreekingTemplateTagTests(TestCase):
         Tests the tag for pulling greek comments
         """
         from greeking import quotables
+
         t = "{% load greeking_tags %}{% greek_comment_list as comment_list %}"
         ctx, out = self.render(t)
-        for comment in list(ctx['comment_list']):
+        for comment in list(ctx["comment_list"]):
             comment_dict = {
-                'user_name': comment.user_name,
-                'user_email': comment.user_email,
-                'user_url': comment.user_url,
-                'comment': comment.comment,
-                'submit_date': comment.submit_date
+                "user_name": comment.user_name,
+                "user_email": comment.user_email,
+                "user_url": comment.user_url,
+                "comment": comment.comment,
+                "submit_date": comment.submit_date,
             }
             match = quotables.HIPHOP[comment.comment_id]
             for k, v in list(comment_dict.items()):
@@ -74,14 +76,11 @@ class GreekingTemplateTagTests(TestCase):
         """
         t1 = "{% load greeking_tags %}{% fillmurray 200 200 %}"
         ctx, out = self.render(t1)
-        self.assertEqual(
-            out,
-            '<img src="http://www.fillmurray.com/200/200/"/>'
-        )
+        self.assertEqual(out, '<img src="http://www.fillmurray.com/200/200/"/>')
         self.assertRaises(
             TemplateSyntaxError,
             self.render,
-            "{% load greeking_tags %}{% fillmurray foobar %}"
+            "{% load greeking_tags %}{% fillmurray foobar %}",
         )
 
     def testPlaceholdIt(self):
@@ -90,50 +89,45 @@ class GreekingTemplateTagTests(TestCase):
         """
         t1 = "{% load greeking_tags %}{% placeholdit 250 250 %}"
         ctx, out = self.render(t1)
-        self.assertEqual(
-            out, u'<img src="http://placehold.it/250x250/cccccc/969696/"/>'
-        )
+        self.assertEqual(out, '<img src="http://placehold.it/250x250/cccccc/969696/"/>')
         t2 = "{% load greeking_tags %}{% placeholdit 100 200 %}"
         ctx, out = self.render(t2)
-        self.assertEqual(
-            out, u'<img src="http://placehold.it/100x200/cccccc/969696/"/>'
-        )
+        self.assertEqual(out, '<img src="http://placehold.it/100x200/cccccc/969696/"/>')
         t3 = "{% load greeking_tags %}{% placeholdit 100 200 \
 background_color='fff' text_color='000' %}"
         ctx, out = self.render(t3)
-        self.assertEqual(
-            out, u'<img src="http://placehold.it/100x200/fff/000/"/>'
-        )
+        self.assertEqual(out, '<img src="http://placehold.it/100x200/fff/000/"/>')
         t4 = "{% load greeking_tags %}{% placeholdit 100 200 \
 text='Hello LA' %}"
         ctx, out = self.render(t4)
         self.assertEqual(
-            out, u'<img src="http://placehold.it/100x200/cccccc/969696/\
-?text=Hello+LA"/>'
+            out,
+            '<img src="http://placehold.it/100x200/cccccc/969696/\
+?text=Hello+LA"/>',
         )
         t5 = "{% load greeking_tags %}{% placeholdit 100 200 'fff' \
 '000' 'Hello LA' %}"
         ctx, out = self.render(t5)
         self.assertEqual(
-            out,
-            u'<img src="http://placehold.it/100x200/fff/000/?text=Hello+LA"/>'
+            out, '<img src="http://placehold.it/100x200/fff/000/?text=Hello+LA"/>'
         )
         self.assertRaises(
             TemplateSyntaxError,
             self.render,
-            "{% load greeking_tags %}{% placeholdit foobar %}"
+            "{% load greeking_tags %}{% placeholdit foobar %}",
         )
         self.assertRaises(
             TemplateSyntaxError,
             self.render,
-            "{% load greeking_tags %}{% placeholdit 200 200 b a b c d e%}"
+            "{% load greeking_tags %}{% placeholdit 200 200 b a b c d e%}",
         )
         from greeking import placeholdit
+
         url = placeholdit.get_url(250, random_background_color=True)
         t6 = url
         ctx, out = self.render(t6)
         self.assertNotEqual(
-            out, u'<img src="http://placehold.it/250x250/cccccc/969696/"/>'
+            out, '<img src="http://placehold.it/250x250/cccccc/969696/"/>'
         )
 
     def testPlaceKittens(self):
@@ -142,11 +136,11 @@ text='Hello LA' %}"
         """
         t1 = "{% load greeking_tags %}{% placekitten 200 200 %}"
         ctx, out = self.render(t1)
-        self.assertEqual(out, u'<img src="http://placekitten.com/200/200/"/>')
+        self.assertEqual(out, '<img src="http://placekitten.com/200/200/"/>')
         self.assertRaises(
             TemplateSyntaxError,
             self.render,
-            "{% load greeking_tags %}{% placekitten foobar %}"
+            "{% load greeking_tags %}{% placekitten foobar %}",
         )
 
     def testLatimesIpsum(self):
@@ -165,14 +159,10 @@ text='Hello LA' %}"
         self.assertTrue(isinstance(image, latimes_ipsum.Image))
         t2 = latimes_ipsum.get_image(250, 250, True)
         ctx, out = self.render(t2)
-        self.assertTrue(
-            t2.url != 'http://placehold.it/250x250/cccccc/969696/'
-        )
+        self.assertTrue(t2.url != "http://placehold.it/250x250/cccccc/969696/")
         t3 = latimes_ipsum.get_image(250)
         ctx, out = self.render(t3)
-        self.assertTrue(
-            t3.url == 'http://placehold.it/250x250/cccccc/969696/'
-        )
+        self.assertTrue(t3.url == "http://placehold.it/250x250/cccccc/969696/")
 
         quote = latimes_ipsum.get_quote()
         self.assertTrue(isinstance(quote, latimes_ipsum.Quote))

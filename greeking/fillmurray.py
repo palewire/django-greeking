@@ -1,7 +1,7 @@
 """
 Utility for generating placeholder Bill Murray images
 """
-URL = 'http://www.fillmurray.com/%(width)s/%(height)s/'
+URL = "http://www.fillmurray.com/%(width)s/%(height)s/"
 
 
 def get_url(width, height, color=True):

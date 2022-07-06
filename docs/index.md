@@ -28,8 +28,7 @@ Before you can use any of the template tags, you have to add the app to the
 
 ```python
 INSTALLED_APPS = [
-    ...
-    'greeking',
+    "greeking",
 ]
 ```
 

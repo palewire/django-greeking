@@ -220,7 +220,7 @@ An object_list of filler comments for use in greeking content for Django's [popu
 * Comments drawn from the work of giants of our time.
 
 
-## palewire
+## Other resources
 
 * Repo: [https://github.com/palewire/django-greeking](https://github.com/palewire/django-greeking)
 * Issues: [github.com/palewire/django-greeking/issues](https://github.com/palewire/django-greeking/issues)

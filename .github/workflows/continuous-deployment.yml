@@ -9,19 +9,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
-      - name: Install pipenv
-        run: pipx install pipenv
-
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v5
         with:
-          python-version: '3.9'
+          python-version: '3.11'
           cache: 'pipenv'
+
+      - id: install-pipenv
+        name: Install pipenv
+        run: curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python
+        shell: bash
 
       - id: pipenv-install
         name: Install Python dependencies
-        run: pipenv install --dev --python `which python`
+        run: pipenv sync --dev
 
       - id: run
         name: Run
@@ -31,23 +33,27 @@ jobs:
     strategy:
       matrix:
         python: ['3.7', '3.8', '3.9', '3.10']
-        django: ['3.1', '4.0']
+        django: ['3.2', '4.2', '5.2']
         exclude:
         - python: '3.7'
-          django: '4.0'
+          django: '4.2'
+        - python: '3.7'
+          django: '5.2'
     name: Test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
-      - name: Install pipenv
-        run: pipx install pipenv
-
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python }}
           cache: 'pipenv'
+
+      - id: install-pipenv
+        name: Install pipenv
+        run: curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python
+        shell: bash
 
       - id: pipenv-install
         name: Install Python dependencies
@@ -64,19 +70,21 @@ jobs:
     needs: [test-python]
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
-      - name: Install pipenv
-        run: pipx install pipenv
-
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v5
         with:
-          python-version: '3.9'
+          python-version: '3.11'
           cache: 'pipenv'
+
+      - id: install-pipenv
+        name: Install pipenv
+        run: curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python
+        shell: bash
 
       - id: pipenv-install
         name: Install Python dependencies
-        run: pipenv install --dev --python `which python`
+        run: pipenv sync --dev
         shell: bash
 
       - id: build
@@ -106,10 +114,6 @@ jobs:
     needs: [test-build]
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
     steps:
-      - uses: actions/setup-python@v2
-        with:
-          python-version: '3.9'
-
       - id: fetch
         name: Fetch artifact
         uses: actions/download-artifact@v2
@@ -124,4 +128,3 @@ jobs:
           user: __token__
           password: ${{ secrets.PYPI_API_TOKEN }}
           verbose: true
-          verify_metadata: false

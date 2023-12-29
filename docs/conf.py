@@ -1,43 +1,33 @@
 """Configure Sphinx configuration."""
+from __future__ import annotations
+
 import os
 import sys
+from typing import Any
 from datetime import datetime
 
-# Insert the parent directory into the path
 sys.path.insert(0, os.path.abspath(".."))
 
-extensions = [
-    "myst_parser",
-]
-templates_path = ["_templates"]
-source_suffix = ".rst"
+source_suffix = ".md"
 master_doc = "index"
 
 project = "django-greeking"
 year = datetime.now().year
-copyright = f"{year} Ben Welsh"
+copyright = f"{year} palewire"
 
 exclude_patterns = ["_build"]
 
-html_theme = "alabaster"
-html_sidebars = {
-    "**": [
-        # "about.html",
-        # "navigation.html",
-        "relations.html",
-        "searchbox.html",
-        "donate.html",
-    ]
-}
-html_theme_options = {
+html_theme = "palewire"
+html_sidebars: dict[Any, Any] = {}
+html_theme_options: dict[Any, Any] = {
     "canonical_url": f"https://palewi.re/docs/{project}/",
-    "show_powered_by": False,
-    "show_relbar_bottom": True,
+    "nosidebar": True,
 }
-
-html_static_path = ["_static"]
-html_css_files = [
-    "css/custom.css",
-]
 
 pygments_style = "sphinx"
+
+extensions = [
+    "myst_parser",
+    "sphinx.ext.autodoc",
+    "sphinx.ext.napoleon",
+]

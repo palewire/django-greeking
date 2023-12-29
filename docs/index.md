@@ -1,6 +1,3 @@
-```{include} _templates/nav.html
-```
-
 # django-greeking
 
 Django template tools for printing filler, a technique from the days of hot type known as greeking
@@ -223,10 +220,9 @@ An object_list of filler comments for use in greeking content for Django's [popu
 * Comments drawn from the work of giants of our time.
 
 
-## Open-source resources
+## palewire
 
-* Repo: [https://github.com/datadesk/django-greeking](https://github.com/datadesk/django-greeking)
-* Docs: [palewi.re/docs/django-greeking/](https://palewi.re/docs/django-greeking/)
-* Issues: [github.com/datadesk/django-greeking/issues](https://github.com/datadesk/django-greeking/issues)
+* Repo: [https://github.com/palewire/django-greeking](https://github.com/palewire/django-greeking)
+* Issues: [github.com/palewire/django-greeking/issues](https://github.com/palewire/django-greeking/issues)
 * Packaging: [pypi.python.org/pypi/django-greeking](https://pypi.python.org/pypi/django-greeking)
-* Testing: [github.com/datadesk/django-greeking/actions](https://github.com/datadesk/django-greeking/actions)
+* Testing: [github.com/palewire/django-greeking/actions](https://github.com/palewire/django-greeking/actions)

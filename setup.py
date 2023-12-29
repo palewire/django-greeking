@@ -114,6 +114,7 @@ setup(
         "Framework :: Django",
         "Framework :: Django :: 3",
         "Framework :: Django :: 4",
+        "Framework :: Django :: 5",
         "Topic :: Software Development :: Libraries :: Python Modules",
     ],
     cmdclass={"test": TestCommand},

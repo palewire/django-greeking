@@ -60,14 +60,6 @@ One provider  is [placekitten.com](https://placekitten.com/)
 <img src="https://placekitten.com/200/200">
 
 
-Another is [fillmurray.com](http://www.fillmurray.com/).
-
-```html+django
-{% fillmurray 600 200 %}
-```
-
-<img src="http://www.fillmurray.com/600/200">
-
 ### Pangrams
 
 A pangram is a phrase that includes every letter of an alphabet. It is useful when testing font implementations.
@@ -111,8 +103,7 @@ Here is the complete list of available languages.
 
 ### L.A. Times ipsum
 
-A set of objects with boilerplate text, URLs and other attributes common to news. Used by the Los Angeles Times Data Desk to greek
-its documentation and pages under development.
+A set of objects with boilerplate text, URLs and other attributes common to news.
 
 The library can generate ``Story``, ``Image``, ``RelatedItem`` and ``Quote`` objects.
 

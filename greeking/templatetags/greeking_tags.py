@@ -2,7 +2,6 @@ from django import template
 from django.utils.html import format_html
 
 from greeking import quotables
-from greeking.fillmurray import get_url as get_fillmurray_url
 from greeking.jabberwocky import get_grafs
 from greeking.jabberwocky import get_html as get_jabberwocky_html
 from greeking.latimes_ipsum import get_quote, get_story
@@ -44,24 +43,6 @@ def latimes_quote():
 
     """
     return get_quote()
-
-
-@register.simple_tag
-def fillmurray(width, height):
-    """
-    Creates a random image of Bill Murray at the provided width and height.
-
-    Usage format:
-
-        {% fillmurray [width] [height] %}
-
-    Example usage:
-
-        Color image at 250 wide and 400 high
-        {% fillmurray 250 400 %}
-    """
-    url = get_fillmurray_url(width, height)
-    return format_html('<img src="{}"/>', url)
 
 
 @register.simple_tag

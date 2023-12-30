@@ -14,7 +14,7 @@ sphinx = "*"
 sphinx-autobuild = "*"
 setuptools-scm = "*"
 myst-parser = "*"
-sphinx-palewire-theme = "*"
+sphinx-palewire-theme = "==0.0.10"
 
 [requires]
 python_version = "3.11"
